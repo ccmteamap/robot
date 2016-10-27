@@ -10,3 +10,8 @@ Als je de github repo niet 'cloned' maar in een bestaande map wilt vestigen dan 
 Om een wijziging terug door te voeren naar GitHub moet je volgende commando's gebruiken:
   - 'git pull origin master'
   - 'git push origin master'
+
+
+
+  bla bla bla bla
+  
