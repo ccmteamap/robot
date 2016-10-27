@@ -3,3 +3,8 @@
 open de git bash in de map waarin je de git map wil plaatsen (dus in de map waarin je de git bash hebt openstaan komt een map robot)
 typ dan volgend comando:
 'git clone https://github.com/ccmteamap/robot'
+Om wijzigingen te kunnen doorvoeren moet je eerst dit commando intypen:
+'git remote add origin https://github.com/ccmteamap/robot'
+om een wijziging terug door te voeren naar GitHub moet je volgende commando's gebruiken:
+  - 'git pull origin master'
+  - 'git push origin master'
