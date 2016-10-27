@@ -7,7 +7,6 @@
 	1. Execute command : 'git remote add origin https://github.com/ccmteamap/robot'  
 
 ##	Pull & push
->>>>>>> 4147cc7e5aef5afbd48f67a6bcae19d35bc54002
+
 	1. Pull the git : 'git pull origin master'
 	2. Push the git : 'git push origin master'
->>>>>>> a5480f09a1537e4f8a945099e198fafd9b71bd6c
