@@ -1,0 +1,49 @@
+* Onderstel
+** MateriaalLijst
+- 2 moteren
+- 4 wielen (met lagers ?)
+- 4 kleine assen
+- 2 kettingen / riemen
+- 6 afstandsensoren
+- arduino's
+  - 1 master/emmer/pomp;
+  - 1 per 2 sensoren
+  => 4 arduino's
+- 4 lagers
+** Onderdelen
+*** Seriële communicatie [0/2]
+    - [ ] Protocol kiezen.
+      * I2C
+      * SPI
+    - [ ] Protocol uittesten.	
+    - [ ] Custom library schrijven.
+*** Sensoren [0/3]
+    - [ ] Soort sensor kiezen en testen.
+      * Ultrasoon
+      * Infrarood
+    - [ ] Opstelling kiezen.
+    - [ ] Library schrijven.
+*** Wielaandrijving [/]
+*** Frame [0/3]
+    - [ ] Wielen kiezen
+    - [ ] Ontwerp uittekenen.
+      * gewicht andere modules inschatten
+      * Monteerpunten voor emmer en pomp
+      * Bekabeling
+      * Batterij
+      * Motor
+      * Aandrijving
+      * Wielen
+      * Sensoren
+
+* TEAMS
+
+| TEAMS | Onderstel | Emmer  | Pomp    |
+|-------+-----------+--------+---------|
+| /     | <>        | <>     | <>      |
+|       | Ruven     | Wouter | Koen    |
+|       | Ski       | Robbe  | Maarten |
+
+
+
+
