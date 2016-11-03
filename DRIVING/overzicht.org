@@ -17,12 +17,14 @@
       * SPI
     - [ ] Protocol uittesten.	
     - [ ] Custom library schrijven.
-*** Sensoren [0/3]
-    - [ ] Soort sensor kiezen en testen.
+*** Sensoren [2/4]
+    - [X] Soort sensor kiezen en testen.
       * Ultrasoon
       * Infrarood
-    - [ ] Opstelling kiezen.
+    - [X] Opstelling kiezen.
     - [ ] Library schrijven.
+      * Cache systeem om foutieve waardes weg te gooien.x
+    - [ ] Reactieruimte voor verschillende snelheden bij verschillende hoeken berekenen.
 *** Wielaandrijving [/]
 *** Frame [0/3]
     - [ ] Wielen kiezen
