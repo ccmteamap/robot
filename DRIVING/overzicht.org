@@ -42,7 +42,6 @@
 
 | TEAMS | Onderstel | Emmer  | Pomp    |
 |-------+-----------+--------+---------|
-| /     | <>        | <>     | <>      |
 |       | Ruven     | Wouter | Koen    |
 |       | Ski       | Robbe  | Maarten |
 
