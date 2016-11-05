@@ -3,21 +3,21 @@
 
 typedef float QueueType;
 
-typedef struct QueueNode{
+typedef struct _QueueNode {
   QueueType value;
-  QueueNode* next;
-};
+  struct _QueueNode* next;
+} QueueNode;
 
-typedef struct Queue{
+typedef struct _Queue {
   int size;
   int MAXSIZE;
   QueueNode* head;
   QueueNode* tail;
-};
+} Queue;
 
 QueueType dequeue(Queue*);
-void enqueue(Queue*, QueueType);
-Queue newQueue();
+int enqueue(Queue*, QueueType);
+Queue newQueue(int);
 void freeQueue(Queue*);
 
 #endif
