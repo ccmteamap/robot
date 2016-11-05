@@ -2,25 +2,29 @@
 #include"queue.h"
 
 QueueType dequeue(Queue* this){
-  if(!this || !this->head){
+  if(!this || !this->head){ //checken of zowel de pointer naar de queue en de pointer naar het eerste element valide zijn.
     return NULL;
   }
 
   QueueNode* tempNode = this->head;
   QueueType tempVal = tempNode->value;
 
-  this->head = tempNode->next ? tempNode->next : NULL;
+  this->head = tempNode->next; //head van queue verplaatsten naar volgende element.
+  if(!tempNode->next){ //als er geen volgende element is dan is de queue leeg en moeten we de tail wegdoen.
+    this->tail = NULL;
+  }
+
   --(this->size);
-  
+  free(tempNode); //verwijderen van voormalige head.
   return tempVal;
 }
 
-//returns 0 if succesful, 1 if not
+//1: niet gelukt, 0: gelukt.
 int enqueue(Queue* this, QueueType value){
-  if(!this || size >= this->MAXSIZE){
+  if(!this || size >= this->MAXSIZE){ //checken of pointer naar queue valide is en of de queue al niet vol is.
     return 1;
   }
-      
+
   QueueNode* new = (QueueNode*) malloc(sizeof QueueNode);
   if(!new){
     return 1;
@@ -28,14 +32,14 @@ int enqueue(Queue* this, QueueType value){
   new->value = value;
   new->next = NULL;
 
-  if(this->tail){
+  if(this->tail){ //als er een tail is dan laten we deze wijzen naar de nieuwe tail
     this->tail->next = new;
   }
   else{
-    this->head = new;
+    this->head = new; //als er geen tail is dan is de queue leeg en maken we een head aan.
   }
 
-  this->tail = new;
+  this->tail = new; 
 
   ++(this->size);
   
