@@ -1,5 +1,4 @@
 #include<math.h>
-#include"queue.h"
 
 #define SIBLINGDISTANCE 0 //afstand tussen sensoren zelfde zijde.
 #define TWINDISTANCE //afstand tussen sensoren weerszijden.
