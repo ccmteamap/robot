@@ -9,14 +9,15 @@ typedef struct QueueNode{
 };
 
 typedef struct Queue{
+  int size;
+  int MAXSIZE;
   QueueNode* head;
   QueueNode* tail;
-  QueueType (*dequeueptr)(Queue*);
-  void (*enqueueptr)(Queue*, QueueType);
 };
 
 QueueType dequeue(Queue*);
 void enqueue(Queue*, QueueType);
-Queue initQueue();
+Queue newQueue();
+void freeQueue(Queue*);
 
 #endif
