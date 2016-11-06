@@ -1,7 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-typedef float QueueType;
+typedef unsigned long QueueType;
 
 typedef struct _QueueNode {
   QueueType value;
