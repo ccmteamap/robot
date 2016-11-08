@@ -1,7 +1,19 @@
 #include<stdlib.h>
 #include"queue.h"
 
-QueueType dequeue(Queue* this){
+typedef struct QueueNode_s {
+  QueueType value;
+  struct QueueNode_s* next;
+} QueueNode;
+
+struct Queue_s {
+  int size;
+  int MAXSIZE;
+  QueueNode* head;
+  QueueNode* tail;
+};
+
+QueueType dequeue(Queue this){
   QueueNode* tempNode = this->head;
   QueueType tempVal = tempNode->value;
 
@@ -16,7 +28,7 @@ QueueType dequeue(Queue* this){
 }
 
 //1: niet gelukt, 0: gelukt.
-int enqueue(Queue* this, QueueType value){
+int enqueue(Queue this, QueueType value){
   if(!this || this->size >= this->MAXSIZE){ 
     return 1;
   }
@@ -40,12 +52,17 @@ int enqueue(Queue* this, QueueType value){
   return 0;
 }
 
-Queue newQueue(int maxSize){
-  Queue e = { 0, maxSize, NULL, NULL };
-  return e;
+Queue newQ(int maxSize){
+  Queue q = (Queue)malloc(sizeof(struct Queue_s));
+  q->size = 0;
+  q->MAXSIZE = maxSize;
+  q->head = NULL;
+  q->tail = NULL;
+
+  return q;
 }
 
-void freeQueue(Queue* q){
+void freeQ(Queue q){
   while(q->head){
     QueueNode* temp = q->head;
     q->head = q->head->next;
@@ -54,4 +71,16 @@ void freeQueue(Queue* q){
   
   q->size = 0;
   return;
+}
+
+QueueType peekQ(Queue this){
+  return this->head->value;
+}
+
+int sizeQ(Queue this){
+  return this->size;
+}
+
+QueueType avrgQ(queue){
+  
 }

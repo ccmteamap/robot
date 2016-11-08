@@ -2,22 +2,14 @@
 #define QUEUE_H
 
 typedef unsigned long QueueType;
+typedef struct Queue_s *Queue;
 
-typedef struct _QueueNode {
-  QueueType value;
-  struct _QueueNode* next;
-} QueueNode;
-
-typedef struct _Queue {
-  int size;
-  int MAXSIZE;
-  QueueNode* head;
-  QueueNode* tail;
-} Queue;
-
-QueueType dequeue(Queue*);
-int enqueue(Queue*, QueueType);
-Queue newQueue(int);
-void freeQueue(Queue*);
+QueueType dequeue(Queue);
+int enqueue(Queue, QueueType);
+Queue newQ(int);
+void freeQ(Queue);
+int sizeQ(Queue);
+QueueType peekQ(Queue); //returns head of queue without dequeue'ing
+QueueType avrgQ(Queue); //returns average of values in queue
 
 #endif
