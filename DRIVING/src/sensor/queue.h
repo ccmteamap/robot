@@ -4,7 +4,7 @@
 typedef unsigned long QueueType;
 typedef struct Queue_s *Queue;
 
-QueueType dequeue(Queue);
+int dequeue(Queue, QueueType*);
 int enqueue(Queue, QueueType);
 Queue newQ(int);
 void freeQ(Queue);
