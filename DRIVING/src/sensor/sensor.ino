@@ -32,23 +32,23 @@ void loop(){
 }
 
 void handleValid(QueueType value){
-  shiftQueue(&validResults, value);
-  freeQueue(&invalidResults);
-  validAvrg = getAverage(validResults);
+  shiftQueue(validResults, value);
+  freeQueue(invalidResults);
+  validAvrg = avrgQ(validResults);
   send(validAvrg);
   return;
 }
 
 void handleInvalid(QueueType value){
-  if(invalidResults.size == INVALIDSIZE){
-    shiftQueue(&invalidResults, value);
+  if(sizeQ(invalidResults) == INVALIDSIZE){
+    shiftQueue(invalidResults, value);
     validResults = invalidResults;
-    freeQueue(&invalidResults);
-    validAvrg = getAverage(validResults);
+    freeQueue(invalidResults);
+    validAvrg = avrgQ(validResults);
     send(validAvrg);
   }
   else{
-    enqueue(&invalidResults, value);
+    enqueue(invalidResults, value);
   }
 }
 
@@ -56,13 +56,9 @@ void send(QueueType value){
   //send value to master arduino using serial communication
 }
 
-void shiftQueue(Queue* q, QueueType value){
-  enqueue(&q, value);
-  dequeue(&q);
-}
-
-QueueType getAverage(queue){
-  //get average of values in queue;
+void shiftQueue(Queue q, QueueType value){
+  enqueue(q, value);
+  dequeue(q, &value);
 }
 
 unsigned long measure(){
