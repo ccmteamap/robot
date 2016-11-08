@@ -2,24 +2,68 @@
 
 #define TRIGGER 0
 #define ECHO 0
+#define VALIDSIZE 5
+#define INVALIDSIZE 5
 
-Queue validResults = newQueue();
-Queue invalidResult = newQueue();
+Queue validResults;
+Queue invalidResults;
+unsigned long validAvrg;
 
 void setup(){
   Serial.begin(9600);
   
   pinMode(TRIGGER, OUTPUT);
-  pinMode(ECHO, INPUT);;
+  pinMode(ECHO, OUTPUT);
+
+  validResults = newQueue(VALIDSIZE);
+  invalidResults = newQueue(INVALIDSIZE);
   
   return;
 }
 
 void loop(){
-  pulse(TRIGGER, 10);
-  float distance = pulseIn(ECHO, HIGH) / 58.0;
+  unsigned long result = measure();
+  if(isValid(result)){
+    handleValid(result);
+  }
+  else {
+    handleInvalid(result);
+  }
+}
 
+void handleValid(QueueType value){
+  shiftQueue(validResults, value);
+  freeQueue(invalidResults);
+  validAvrg = avrgQ(validResults);
+  send(validAvrg);
   return;
+}
+
+void handleInvalid(QueueType value){
+  if(sizeQ(invalidResults) == INVALIDSIZE){
+    shiftQueue(invalidResults, value);
+    validResults = invalidResults;
+    freeQueue(invalidResults);
+    validAvrg = avrgQ(validResults);
+    send(validAvrg);
+  }
+  else{
+    enqueue(invalidResults, value);
+  }
+}
+
+void send(QueueType value){
+  //send value to master arduino using serial communication
+}
+
+void shiftQueue(Queue q, QueueType value){
+  enqueue(q, value);
+  dequeue(q, &value);
+}
+
+unsigned long measure(){
+  pulse(TRIGGER, 10);
+  return pulseIn(ECHO, HIGH);
 }
 
 void pulse(int pin, int duration){
@@ -30,16 +74,6 @@ void pulse(int pin, int duration){
   return;
 }
 
-void dMsg(char* msg, float amount){
-  Serial.print(msg);
-  Serial.println(amount);
-
-  return;
+bool isValid(unsigned long measurement){
+  //see if measured distance is within margin of average.
 }
-
-bool isValid(float measurement){
-  
-  
-  return 1;
-}
-
