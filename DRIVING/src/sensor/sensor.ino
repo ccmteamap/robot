@@ -1,5 +1,5 @@
 /*
-Program to use a HC - SR04 Ultrasonic sensor.
+Program to use the HC - SR04 Ultrasonic sensor.
 Smoothens measurements using an exponential moving average.
 
 
@@ -18,7 +18,6 @@ AP CCM Team 2016
 #define INVALIDMAX 5 //number of invalid measurements before further action required.
 
 unsigned int validAverage;
-NewPing sensor(TRIGGER, ECHO, MAXDISTANCE);
 
 void setup() {
   Serial.begin(9600);
@@ -39,25 +38,11 @@ void loop() {
     handleInvalid(distance);
   }
   
-  Serial.print(distance); //blauw
-  Serial.print(" ");
-  Serial.print(validAverage);
-  Serial.print(" ");
-  Serial.print(sensor.convert_cm(distance) * 60);
-  Serial.print(" ");
-  Serial.print(sensor.convert_cm(validAverage) * 60);
-  Serial.println();
-
-  /*
-  Serial.print(sensor.convert_cm(distance) * 10);
-  Serial.print(" ");
-  Serial.println(sensor.convert_cm(validAverage) * 10); 
-  */
-
   delay(30);
 }
 
 unsigned int measure(){
+  static NewPing sensor(TRIGGER, ECHO, MAXDISTANCE);
   return sensor.ping();
 }
 
@@ -98,8 +83,8 @@ void handleInvalid(unsigned int distance){
   return;
 }
 
+//sends value to master Arduino
 void send(unsigned long value){
-  //send value to master arduino
   return;
 }
 
@@ -110,9 +95,8 @@ unsigned int calcAverage(unsigned int distance, unsigned long average) {
   return round(newAverage);
 }
 
-//check whether the sensor is working.
 void sensorCheck() {
-  validAverage = measure(); //Get a first average for use in exponential moving average calculation.
+  validAverage = measure(); //Gets the first average for use in exponential moving average calculation.
   if (validAverage == 0) {
     //Sensor isn't working. Action required.
   }
