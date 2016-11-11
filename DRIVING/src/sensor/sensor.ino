@@ -1,79 +1,123 @@
-#include"queue.h"
+/*
+Program to use a HC - SR04 Ultrasonic sensor.
+Smoothens measurements using an exponential moving average.
 
-#define TRIGGER 0
-#define ECHO 0
-#define VALIDSIZE 5
-#define INVALIDSIZE 5
 
-Queue validResults;
-Queue invalidResults;
-unsigned long validAvrg;
+AP CCM Team 2016
+*/
 
-void setup(){
+#include <NewPing.h>
+#include<math.h>
+
+#define TRIGGER 7
+#define ECHO 8
+#define MAXDISTANCE 90 //in cm.
+
+#define SAMPLESIZE 1000.0 //number of measurements in exponential moving average.
+#define DEVIATIONMAX 28 //amount a new measurement can deviate from the average.
+#define INVALIDMAX 5 //number of invalid measurements before further action required.
+
+unsigned int validAverage;
+NewPing sensor(TRIGGER, ECHO, MAXDISTANCE);
+
+void setup() {
   Serial.begin(9600);
-  
   pinMode(TRIGGER, OUTPUT);
-  pinMode(ECHO, OUTPUT);
+  pinMode(ECHO, INPUT);
 
-  validResults = newQueue(VALIDSIZE);
-  invalidResults = newQueue(INVALIDSIZE);
+  sensorCheck();
   
   return;
 }
 
-void loop(){
-  unsigned long result = measure();
-  if(isValid(result)){
-    handleValid(result);
+void loop() {
+  unsigned int distance = measure();
+  if (isValid(distance)) {
+    handleValid(distance);
   }
   else {
-    handleInvalid(result);
+    handleInvalid(distance);
   }
+  
+  Serial.print(distance); //blauw
+  Serial.print(" ");
+  Serial.print(validAverage);
+  Serial.print(" ");
+  Serial.print(sensor.convert_cm(distance) * 60);
+  Serial.print(" ");
+  Serial.print(sensor.convert_cm(validAverage) * 60);
+  Serial.println();
+
+  /*
+  Serial.print(sensor.convert_cm(distance) * 10);
+  Serial.print(" ");
+  Serial.println(sensor.convert_cm(validAverage) * 10); 
+  */
+
+  delay(30);
 }
 
-void handleValid(QueueType value){
-  shiftQueue(validResults, value);
-  freeQueue(invalidResults);
-  validAvrg = avrgQ(validResults);
-  send(validAvrg);
-  return;
+unsigned int measure(){
+  return sensor.ping();
 }
 
-void handleInvalid(QueueType value){
-  if(sizeQ(invalidResults) == INVALIDSIZE){
-    shiftQueue(invalidResults, value);
-    validResults = invalidResults;
-    freeQueue(invalidResults);
-    validAvrg = avrgQ(validResults);
-    send(validAvrg);
+//returns true if result is within MAXDEVIATION of the average of valid results.
+bool isValid(unsigned int distance) {
+  unsigned int deviation;
+  if (distance <= validAverage) {
+    deviation = validAverage - distance;
+  }
+  else {
+    deviation = distance - validAverage;
+  }
+
+  if (deviation > DEVIATIONMAX) {
+    return false;
+  }
+
+  return true;
+}
+
+void handleValid(unsigned int distance) {
+  validAverage = calcAverage(distance, validAverage); 
+  send(validAverage);
+}
+
+void handleInvalid(unsigned int distance){
+  static int invalidMeasurements = 0;
+  
+  if(invalidMeasurements >= INVALIDMAX){
+    validAverage = distance;
+    invalidMeasurements = 0;
+    send(validAverage);
   }
   else{
-    enqueue(invalidResults, value);
+    invalidMeasurements++;
   }
-}
-
-void send(QueueType value){
-  //send value to master arduino using serial communication
-}
-
-void shiftQueue(Queue q, QueueType value){
-  enqueue(q, value);
-  dequeue(q, &value);
-}
-
-unsigned long measure(){
-  pulse(TRIGGER, 10);
-  return pulseIn(ECHO, HIGH);
-}
-
-void pulse(int pin, int duration){
-  digitalWrite(pin, HIGH);
-  delayMicroseconds(duration);
-  digitalWrite(pin, LOW);
 
   return;
 }
 
-bool isValid(unsigned long measurement){
-  //see if measured distance is within margin of average.
+void send(unsigned long value){
+  //send value to master arduino
+  return;
 }
+
+//calculates a new exponential moving average.
+unsigned int calcAverage(unsigned int distance, unsigned long average) {
+  static float smoothingFactor = 2.0 / (SAMPLESIZE + 1.0);
+  double newAverage = (distance * smoothingFactor) + (average * (1 - smoothingFactor));
+  return round(newAverage);
+}
+
+//check whether the sensor is working.
+void sensorCheck() {
+  validAverage = measure(); //Get a first average for use in exponential moving average calculation.
+  if (validAverage == 0) {
+    //Sensor isn't working. Action required.
+  }
+
+  return;
+}
+
+
