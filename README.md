@@ -9,16 +9,16 @@ The robot must be working autonomously when it is in the contest area. It is not
 
   We have divided our team into 3 subgroups:
   
-  ### Driving
+  **Driving**
   
   Ski de Keersmaecker
   Ruven Salamon
   
-  ### Bucket
+  **Bucket**
   
   Robbe Goethals
   Wouter Peetermans
   
-  ### Pump
+  **Pump**
   Koen Schauwaerts
   Maarten Wachters
