@@ -12,13 +12,17 @@ The robot must be working autonomously when it is in the contest area. It is not
   **Driving**
   
   Ski de Keersmaecker
+  
   Ruven Salamon
   
   **Bucket**
   
   Robbe Goethals
+  
   Wouter Peetermans
   
   **Pump**
+  
   Koen Schauwaerts
+  
   Maarten Wachters
