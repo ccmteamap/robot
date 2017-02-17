@@ -6,13 +6,19 @@ The robot must be working autonomously when it is in the contest area. It is not
 [More info](http://www.ccm.nl/en/assignment-2017/assignment-2017.html)
 
 ## Our team
+
   We have divided our team into 3 subgroups:
+  
   ### Driving
+  
   Ski de Keersmaecker
   Ruven Salamon
+  
   ### Bucket
+  
   Robbe Goethals
   Wouter Peetermans
+  
   ### Pump
   Koen Schauwaerts
   Maarten Wachters
