@@ -11,7 +11,7 @@ The robot must be working autonomously when it is in the contest area. It is not
   
   **Driving**
   
-  Ski de Keersmaecker
+  Ski De Keersmaecker
   
   Ruven Salamon
   
@@ -23,6 +23,6 @@ The robot must be working autonomously when it is in the contest area. It is not
   
   **Pump**
   
-  Koen Schauwaerts
+  Koen Schauwaert
   
   Maarten Wachters
