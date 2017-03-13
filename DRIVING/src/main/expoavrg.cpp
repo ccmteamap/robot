@@ -1,6 +1,9 @@
 #include"expoavrg.h"
 
-double calcExpoAvrg(double newValue, ExpoAvrg average) {
-  double smoothingFactor = 2.0 / (average.size + 1.0);
-  return (newValue * smoothingFactor) + (average.value * (1 - smoothingFactor));
+ExpoAvrg::ExpoAvrg(double initVal, int size) : value(initVal), size(size){}
+
+void ExpoAvrg::Update(double newValue){
+  double smoothingFactor = 2.0 / (size + 1.0);
+  value = (newValue * smoothingFactor) + (value * (1 - smoothingFactor));
 }
+

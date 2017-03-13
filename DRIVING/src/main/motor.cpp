@@ -1,4 +1,5 @@
 #include"motor.h"
+#include<Arduino.h>
 
 Motor::Motor(int pin) : pin(pin) {
   pinMode(pin, OUTPUT);
@@ -6,4 +7,8 @@ Motor::Motor(int pin) : pin(pin) {
 
 void Motor::SetSpeed(int speed){
   analogWrite(pin, speed % 255);
+}
+
+int Motor::GetSpeed() {
+  return speed;
 }
