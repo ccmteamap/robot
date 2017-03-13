@@ -7,15 +7,17 @@ Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
 }
 
 //tussen -255 (achteruit, richting vuur) en 255 (vooruit richting bassin)
-void Motor::SetSpeed(int speed){
-  if(speed < 0) {
-    analogWrite(backwardPin, speed);
+void Motor::SetSpeed(int newSpeed){
+  if(newSpeed < 0) {
+    analogWrite(backwardPin, newSpeed);
     analogWrite(forwardPin, 0);
   }
   else {
     analogWrite(backwardPin, 0);
-    analogWrite(forwardPin, speed);
+    analogWrite(forwardPin, newSpeed);
   }
+
+  speed = newSpeed;
 }
 
 int Motor::GetSpeed() {
