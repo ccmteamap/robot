@@ -1,4 +1,15 @@
-#include"../expoavrg.h"
+#include <NewPing.h>
+#include"expoavrg.h"
+
+#define FRONTTRIGGER 4
+#define FRONTECHO 3
+#define BACKTRIGGER 5
+#define BACKECHO 6
+#define MAXDISTANCE 900
+
+#define AVRGSIZE 33
+
+ExpoAvrg frontAvrg = { 0, AVRGSIZE }, backAvrg = { 0, AVRGSIZE };
 
 void setup() {
 }
@@ -9,14 +20,26 @@ void loop() {
   callHome(); //send debugging information.
 }
 
-void callHome(){
-  
+void callHome() {
+
 }
 
-void checkInputs(){
-  
+void checkInputs() {
+  measureDistances();
 }
 
-void updateState(){
-  
+void updateState() {
+
 }
+
+void measureDistances() {
+  static NewPing frontSensor(FRONTTRIGGER, FRONTECHO, MAXDISTANCE);
+  static NewPing backSensor(BACKTRIGGER, BACKECHO, MAXDISTANCE);
+
+  unsigned int frontDistance = frontSensor.ping();
+  unsigned int backDistance = backSensor.ping();
+
+  frontAvrg.value = calcExpoAvrg((double) frontDistance, frontAvrg);
+  backAvrg.value = calcExpoAvrg((double) backDistance, frontAvrg);
+}
+
