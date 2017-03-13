@@ -1,0 +1,9 @@
+Installeer nieuwste versie van Arduino (min 1.6)
+
+Installeer driver voor Arduino DUE, via 'hulpmiddelen' => 'Board' => 'Bordenbeheerder' => invullen 'Arduino DUE' en pakket installeren.
+
+Steek kabel in de poort het dichtst bij de voeding (kant van analoge pinnen).
+
+Kies voor board: "Arduino Due (programming port)"
+
+Kies voor poort degene die wordt getoond => iets als: "COM4 (Arduino Due (programming port))"
