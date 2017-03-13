@@ -1,5 +1,14 @@
+/*
+ * Team Poembak Delco
+ * AP Hogeschool
+ * 2017
+ */
+
+//TODO: Change pin numbers
+
 #include <NewPing.h>
 #include"expoavrg.h"
+#include"motor.h"
 
 #define FRONTTRIGGER 4
 #define FRONTECHO 3
@@ -9,6 +18,7 @@
 
 #define AVRGSIZE 33
 
+Motor motor(7
 ExpoAvrg frontAvrg = { 0, AVRGSIZE }, backAvrg = { 0, AVRGSIZE };
 
 void setup() {
