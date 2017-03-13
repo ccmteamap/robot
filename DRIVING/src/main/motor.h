@@ -1,13 +1,14 @@
-#ifndef MOTOR
-#define MOTOR
+#ifndef MOTOR_H
+#define MOTOR_H
 
 class Motor {
  private:
-  int pin;
+  int forwardPin;
+  int backwardPin;
   int speed;
 
  public:
-  Motor(int);
+  Motor(int, int);
   void SetSpeed(int);
   int GetSpeed();
 };

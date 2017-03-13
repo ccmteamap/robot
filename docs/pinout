@@ -7,6 +7,7 @@ Arduino uno
 |  10 | nRF24           |
 |   9 | nRF24           |
 |  5~ | motor onderstel |
+|  6~ | motor onderstel |
 |   0 | ultra1 echo     |
 |   1 | ultra1 trigger  |
 |   2 | ultra2 echo     |

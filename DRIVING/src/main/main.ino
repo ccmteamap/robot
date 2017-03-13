@@ -4,49 +4,37 @@
  * 2017
  */
 
-//TODO: Change pin numbers
-
-#include <NewPing.h>
-#include"expoavrg.h"
-#include"motor.h"
 #include"states.h"
+#include"sensors.h"
 
-#define FRONTTRIGGER 4
-#define FRONTECHO 3
-#define BACKTRIGGER 5
-#define BACKECHO 6
-#define MAXDISTANCE 900
-
-#define AVRGSIZE 33
-
-Motor motor(7);
-ExpoAvrg frontAvrg(0, AVRGSIZE);
-ExpoAvrg backAvrg(0, AVRGSIZE);
+#define CE 9 //nodig voor nRF24
+#define CSN 10 //nodig voor nRF24
 
 State currentState = Off;
 int sensorMask = 0;
 
 void setup() {
+  initSensorPins();
 }
 
 void loop() {
-  checkInputs(); //update status of sensors.
-  updateState(); //check to see if status should be changed according to updated sensor states.
-  stateAction(); //perform action.
+  inputScan(); //update status of sensors.
+  executeProgram(); //update state and perform action
   callHome(); //send debugging information.
 }
 
 void callHome() {
-
+//TODO
 }
 
-void checkInputs() {
+void inputScan() {
+  sensorMask = getSensorMask();
   measureDistances();
-  updateSensorMask();
 }
 
-void updateSensorMask(){
-  sensorMask = 0;
+void executeProgram(){
+  updateState();
+  stateAction();
 }
 
 void updateState() {
@@ -109,17 +97,6 @@ void updateState() {
       //send state
       break;
   }
-}
-
-void measureDistances() {
-  static NewPing frontSensor(FRONTTRIGGER, FRONTECHO, MAXDISTANCE);
-  static NewPing backSensor(BACKTRIGGER, BACKECHO, MAXDISTANCE);
-
-  unsigned int frontDistance = frontSensor.ping();
-  unsigned int backDistance = backSensor.ping();
-
-  frontAvrg.Update((double) frontDistance);
-  backAvrg.Update((double) backDistance);
 }
 
 void stateAction(){
