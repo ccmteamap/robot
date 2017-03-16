@@ -6,6 +6,7 @@
 
 #include"states.h"
 #include"sensors.h"
+#include"comm.h"
 
 #define CE 9 //nodig voor nRF24
 #define CSN 10 //nodig voor nRF24
@@ -15,6 +16,7 @@ int sensorMask = 0;
 
 void setup() {
   initSensorPins();
+  initCommPins();
 }
 
 void loop() {
