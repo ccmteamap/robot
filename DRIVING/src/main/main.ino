@@ -117,10 +117,6 @@ void stateAction(){
       raiseBucket();
       break;
 
-    case Pouring:
-      //TODO
-      break;
-
     case LoweringBucket:
       lowerBucket();
       break;
