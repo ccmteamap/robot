@@ -48,42 +48,42 @@ void updateState() {
   switch(currentState){
     //Als 'aan' en eindeloopschakelaar pompzijde ingedrukt
     case DrivingForward:
-      if(sensorMask & (ON | ELOOPPOMP)){
+      if(sensorMask & ON && sensorMask & ELOOPPOMP){
         currentState = LoweringPump;
       }
       break;
 
     //Als 'aan' en pompsensor emmer zijn ingedrukt (dus emmer is vol)  
     case LoweringPump:
-      if(sensorMask & (ON | POMP1)){
+      if(sensorMask & ON && sensorMask & POMP1){
         currentState = RaisingPump;
       }
       break;
 
     //Als 'aan' en pompsensor bassin zijn ingedrukt (dus pomp is opgehaald)
     case RaisingPump:
-      if(sensorMask & (ON | POMP2)){
+      if(sensorMask & ON && sensorMask & POMP2)){
         currentState = DrivingBackwards;
       }
       break;
 
     //Als 'aan' en eindeloopschakelaar emmer zijde ingedrukt (robot tegen vuur zijde)
     case DrivingBackwards:
-      if(sensorMask & (ON | ELOOPEMMER)){
+      if(sensorMask & ON && sensorMask & ELOOPEMMER){
         currentState = RaisingBucket;
       }
       break;
 
     //Als 'aan' en emmer sensor bovenaan ingedrukt (emmer is dus opgehoffen)
     case RaisingBucket:
-      if(sensorMask & (ON | EMMER1)){
+      if(sensorMask & ON && sensorMask & EMMER1){
         currentState = LoweringBucket;
       }
       break;
 
     //Als 'aan' en emmer sensor onderaan ingedrukt (emmer terug gedaald)
     case LoweringBucket:
-      if(sensorMask & (ON | EMMER2)){
+      if(sensorMask & ON && sensorMask & EMMER2){
         currentState = DrivingForward;
       }
       break;
@@ -115,10 +115,6 @@ void stateAction(){
 
     case RaisingBucket:
       raiseBucket();
-      break;
-
-    case Pouring:
-      //TODO
       break;
 
     case LoweringBucket:
