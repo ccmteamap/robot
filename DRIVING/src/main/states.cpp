@@ -14,6 +14,7 @@ void raisePump(){
   
 }
 
+//pomp zakken + aanzetten
 void lowerPump(){
   
 }

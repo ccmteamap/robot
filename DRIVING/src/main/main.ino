@@ -52,7 +52,8 @@ void updateState() {
         currentState = LoweringPump;
       }
       break;
-      
+
+    //Als 'aan' en pompsensor emmer zijn ingedrukt (dus emmer is vol)  
     case LoweringPump:
       if(sensorMask & (ON | POMP1)){
         currentState = RaisingPump;
@@ -76,12 +77,8 @@ void updateState() {
     //Als 'aan' en emmer sensor bovenaan ingedrukt (emmer is dus opgehoffen)
     case RaisingBucket:
       if(sensorMask & (ON | EMMER1)){
-        currentState = Pouring;
+        currentState = LoweringBucket;
       }
-      break;
-
-    case Pouring:
-      //TODO
       break;
 
     //Als 'aan' en emmer sensor onderaan ingedrukt (emmer terug gedaald)

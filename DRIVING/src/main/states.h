@@ -8,7 +8,6 @@ typedef enum {
   RaisingPump,
   DrivingBackwards, 
   RaisingBucket,
-  Pouring,
   LoweringBucket
 } State;
 
