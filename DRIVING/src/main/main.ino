@@ -6,7 +6,7 @@
 
 #include"states.h"
 #include"sensors.h"
-#include"comm.h"
+//#include"comm.h"
 
 #define CE 9 //nodig voor nRF24
 #define CSN 10 //nodig voor nRF24
@@ -16,7 +16,8 @@ int sensorMask = 0;
 
 void setup() {
   initSensorPins();
-  startComm();
+  //startComm();
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -32,6 +33,9 @@ void listenHome(){
 
 void callHome() {
 //TODO
+Serial.print(sensorMask);
+Serial.print(currentState);
+
 }
 
 void inputScan() {
@@ -115,10 +119,6 @@ void stateAction(){
 
     case RaisingBucket:
       raiseBucket();
-      break;
-
-    case Pouring:
-      //TODO
       break;
 
     case LoweringBucket:
