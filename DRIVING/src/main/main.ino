@@ -16,13 +16,18 @@ int sensorMask = 0;
 
 void setup() {
   initSensorPins();
-  initCommPins();
+  startComm();
 }
 
 void loop() {
   inputScan(); //update status of sensors.
   executeProgram(); //update state and perform action
   callHome(); //send debugging information.
+  listenHome(); //see if we got instructions.
+}
+
+void listenHome(){
+  
 }
 
 void callHome() {
@@ -49,14 +54,6 @@ void updateState() {
       break;
       
     case LoweringPump:
-      //TODO
-      if(true){
-        currentState = Pumping;
-      }
-      break;
-
-    //Als 'aan' en pompsensor emmer zijde ingedrukt (dus emmer vol)
-    case Pumping:
       if(sensorMask & (ON | POMP1)){
         currentState = RaisingPump;
       }
@@ -109,10 +106,6 @@ void stateAction(){
     
     case LoweringPump:
       lowerPump();
-      break;
-    
-    case Pumping:
-      pump();
       break;
 
     case RaisingPump:

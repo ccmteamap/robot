@@ -18,10 +18,6 @@ void lowerPump(){
   
 }
 
-void pump(){
-  
-}
-
 void raiseBucket(){
   
 }
