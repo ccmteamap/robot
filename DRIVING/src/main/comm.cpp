@@ -2,7 +2,6 @@
 #include <RF24_config.h>
 #include <RF24.h>
 #include <nRF24L01.h>
-#include<Arduino.h>
 
 #define CE 9
 #define CSN 10
@@ -11,12 +10,7 @@
 
 RF24 rf(CE, CSN);
 
-typedef enum {
-  SENDING,
-  RECEIVING
-} Mode;
-
-Mode currentMode = RECEIVING;
+bool listening = true;
 
 void startComm(){
   rf.begin();
@@ -24,3 +18,10 @@ void startComm(){
   rf.openWritingPipe(TX_ADDRESS);
   rf.startListening();
 }
+
+void send(const void *msg, uint8_t size){
+  rf.stopListening();
+  rf.write(msg, size);
+  rf.startListening();
+}
+

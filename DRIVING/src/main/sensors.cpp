@@ -13,7 +13,7 @@
 ExpoAvrg ultraPAvrg(0, AVRGSIZE);
 ExpoAvrg ultraEAvrg(0, AVRGSIZE);
 
-int sensorPins[NUM_PINS] = {
+int sensorPins[NUM_PINS] = {  
   0, //eindeloop emmer zijde
   0, //eindeloop pomp zije
   0, //pomp sensor die checkt of emmer vol is
@@ -38,7 +38,7 @@ int getSensorMask(){
 
   for(int i = 0; i < NUM_PINS; ++i){
     if(digitalRead(sensorPins[i])){
-      mask |= 0x01 << (i + 1); //+ 1 want 0x01 is voorbehouden voor 'ON'
+      mask |= 0x01 << i; //+ 1 want 0x01 is voorbehouden voor 'ON'
     }
   }
 

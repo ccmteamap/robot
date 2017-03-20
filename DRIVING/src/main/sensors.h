@@ -3,13 +3,12 @@
 
 #include"expoavrg.h"
 
-#define ON 0x01
-#define ELOOPEMMER 0x02
-#define ELOOPPOMP 0x04
-#define POMP1 0x08
-#define POMP2 0x10
-#define EMMER1 0x20
-#define EMMER2 0x40
+#define ELOOPEMMER 0x01
+#define ELOOPPOMP 0x02
+#define POMP1 0x04
+#define POMP2 0x08
+#define EMMER1 0x10
+#define EMMER2 0x20
 
 void initSensorPins();
 int getSensorMask(); //returns a mask indicating which sensors are
