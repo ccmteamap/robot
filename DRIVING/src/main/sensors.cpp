@@ -38,7 +38,7 @@ int getSensorMask(){
 
   for(int i = 0; i < NUM_PINS; ++i){
     if(digitalRead(sensorPins[i])){
-      mask |= 0x01 << i; //+ 1 want 0x01 is voorbehouden voor 'ON'
+      mask |= 0x01 << i;
     }
   }
 
