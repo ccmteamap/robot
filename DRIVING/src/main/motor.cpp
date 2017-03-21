@@ -6,12 +6,12 @@ Motor mainMotor(5, 6);
 Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
   pinMode(fPin, OUTPUT);
   pinMode(bPin, OUTPUT);
-  this->maxSpeed=255;
+  this->power=100;
 }
 
 //tussen -255 (achteruit, richting vuur) en 255 (vooruit richting bassin)
 void Motor::SetSpeed(int newSpeed){
-  int mappedSpeed = (newSpeed * maxSpeed) / 100;
+  int mappedSpeed = (newSpeed * power) / 100;
   
   if(newSpeed < 0) {
     analogWrite(backwardPin, mappedSpeed);
@@ -29,7 +29,11 @@ int Motor::GetSpeed() {
   return speed;
 }
 
-void Motor::SetMaxSpeed(unsigned int newMaxSpeed){
-  maxSpeed = newMaxSpeed % 101;
+void Motor::SetPower(unsigned int newPower){
+  power = newPower % 101;
+}
+
+unsigned int Motor::GetPower(){
+  return power;
 }
 
