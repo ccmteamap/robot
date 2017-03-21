@@ -29,11 +29,13 @@ int Motor::GetSpeed() {
   return speed;
 }
 
-void Motor::SetPower(unsigned int newPower){
-  power = newPower % 101;
+void Motor::SetPower(unsigned int newPower) {
+	power = newPower % 101;
+
+	speed = (speed * power) / 100;
 }
 
-unsigned int Motor::GetPower(){
-  return power;
+unsigned int Motor::GetPower() {
+	return power;
 }
 

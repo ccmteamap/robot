@@ -6,7 +6,7 @@ class Motor {
   int forwardPin;
   int backwardPin;
   int speed;
-  unsigned int power; //max speed between 0 and 100
+  unsigned int power; //power between 0 and 100
 
  public:
   Motor(int, int);
