@@ -2,6 +2,7 @@
 #define COMM_H
 
 #include<stdint.h>
+#include"command.h"
 
 typedef struct {
   uint8_t command; //P: pause, R: running, H: halt, M: motor, S: state

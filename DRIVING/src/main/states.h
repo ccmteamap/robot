@@ -1,11 +1,11 @@
  #ifndef STATES_H
 #define STATES_H
 
-#include"states/driving.h"
-#include"states/loweringbucket.h"
-#include"states/loweringpump.h"
-#include"states/raisingbucket.h"
-#include"states/raisingpump.h"
+#include"src/driving.h"
+#include"src/loweringbucket.h"
+#include"src/loweringpump.h"
+#include"src/raisingbucket.h"
+#include"src/raisingpump.h"
 
 typedef enum {
   Off,
