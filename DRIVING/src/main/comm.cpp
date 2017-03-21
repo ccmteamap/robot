@@ -25,3 +25,10 @@ void send(const void *msg, uint8_t size){
   rf.startListening();
 }
 
+bool read(command* commandBuffer) {
+	if (rf.available()) {
+		return rf.read(commandBuffer, sizeof(*commandBuffer));
+	}
+
+	return false;
+}

@@ -5,5 +5,6 @@
 
 void startComm();
 void send(const void*, uint8_t);
+bool read(Command*);
 
 #endif
