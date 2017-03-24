@@ -1,23 +1,20 @@
-#ifndef STATES_H
+ #ifndef STATES_H
 #define STATES_H
+
+#include"src/driving.h"
+#include"src/loweringbucket.h"
+#include"src/loweringpump.h"
+#include"src/raisingbucket.h"
+#include"src/raisingpump.h"
 
 typedef enum {
   Off,
   DrivingForward,
   LoweringPump,
-  Pumping,
   RaisingPump,
   DrivingBackwards, 
   RaisingBucket,
-  Pouring,
   LoweringBucket
 } State;
-
-void drive(bool);
-void raisePump();
-void lowerPump();
-void pump();
-void raiseBucket();
-void lowerBucket();
 
 #endif
