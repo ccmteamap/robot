@@ -45,11 +45,12 @@ void executeProgram() {
 
 void updateState() {
   switch (currentState) {
-    //Als 'aan' en eindeloopschakelaar pompzijde ingedrukt
     case Off:
       if(running){
         currentState = DrivingForward;
       }
+
+    //Als 'aan' en eindeloopschakelaar pompzijde ingedrukt
     case DrivingForward:
       if (sensorMask & ELOOPPOMP && running) {
         currentState = LoweringPump;
