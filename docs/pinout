@@ -9,7 +9,7 @@ Arduino uno
 |  5~ | motor onderstel     |
 |  6~ | motor onderstel     |
 |   0 | ultra pomp echo     |
-|   1 | ultra1 pomp trigger |
-|   2 | ultra2 echo echo    |
-|   3 | ultra2 echo trigger |
+|   1 | ultra pomp trigger  |
+|   2 | ultra emmer  echo   |
+|   3 | ultra emmer trigger |
 
