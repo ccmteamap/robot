@@ -1,8 +1,5 @@
 #TODO
 
-Meeting with Koen about which components we need
-
-Order said components
 
 #GOALS
 

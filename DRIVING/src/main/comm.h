@@ -1,8 +1,9 @@
 #ifndef COMM_H
 #define COMM_H
 
-void initCommPins();
-void connect();
-void send(void*, size_t);
+#include<stdint.h>
+
+void startComm();
+void send(const void*, uint8_t);
 
 #endif
