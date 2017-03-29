@@ -17,6 +17,6 @@ DRILLFILE                                           LAMINATION
 motorControllerPCB-1_0 - TopLayer-BottomLayer.drl   TopLayer .. BottomLayer
 
 TOOL     SIZE   TYPE  COUNT
-   1   0.6000    PTH     12
-   2   0.9000    PTH     11
-   3   1.0000    PTH     19
+   1   0.9000    PTH      3
+   2   1.0000    PTH     29
+   3   1.5000    PTH      4
