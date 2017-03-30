@@ -2,10 +2,11 @@
 #define COMM_H
 
 #include<stdint.h>
-#include"command.h"
+
+#define PAYLOAD_SIZE 10 //instructie is max 10 bytes lang.
 
 void startComm();
 void send(const void*, uint8_t);
-bool read(Command*);
+bool read(void*);
 
 #endif

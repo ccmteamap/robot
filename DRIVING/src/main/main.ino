@@ -7,6 +7,8 @@
 #include"states.h"
 #include"sensors.h"
 #include"comm.h"
+#include"parser.h"
+#include<stdint.h>
 
 bool running;
 State currentState = Off;
@@ -25,7 +27,11 @@ void loop() {
 }
 
 void listenHome() {
+  static uint8_t buffer[PAYLOAD_SIZE];
+  if(read(&buffer)){
 
+  }
+  
 }
 
 void callHome() {
