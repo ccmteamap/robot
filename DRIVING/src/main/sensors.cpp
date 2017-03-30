@@ -7,19 +7,21 @@
 #define ULTRA_E_ECHO 1
 #define ULTRA_P_TRIGGER 7 //Ultrasone afstandssensor pomp zijde
 #define ULTRA_P_ECHO 4
+
 #define MAXDISTANCE 900
 #define NUM_PINS 6
 
 ExpoAvrg ultraPAvrg(0, AVRGSIZE);
 ExpoAvrg ultraEAvrg(0, AVRGSIZE);
 
-int sensorPins[NUM_PINS] = {
-  7, //EL1 eindeloop emmer zijde
-  8, //EL2 eindeloop pomp zije
-  9, //P1 pomp sensor die checkt of emmer vol is
-  10, //P2 pomp sensor die checkt of pomp laag hangt
-  11, //E1 emmer sensor bovenaan
-  12, //E2 emmer sensor onderaan
+int sensorPins[NUM_PINS] = {  
+  0, //eindeloop emmer zijde
+  0, //eindeloop pomp zije
+  0, //pomp sensor die checkt of emmer vol is
+  0, //pomp sensor die checkt of pomp laag hangt
+  0, //emmer sensor bovenaan
+  0, //emmer sensor onderaan
+};
 
 void initSensorPins(){
   for(int i = 0; i < NUM_PINS; ++i){
@@ -33,14 +35,14 @@ void initSensorPins(){
 }
 
 int getSensorMask(){
-  int mask = 1;
+  int mask = 0;
 
   for(int i = 0; i < NUM_PINS; ++i){
     if(digitalRead(sensorPins[i])){
       mask |= 0x01 << i;
     }
   }
-  
+
   return mask;
 }
 

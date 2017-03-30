@@ -6,7 +6,7 @@
 
 #include"states.h"
 #include"sensors.h"
-//#include"comm.h"
+#include"comm.h"
 
 bool running;
 State currentState = Off;
@@ -14,8 +14,7 @@ int sensorMask = 0;
 
 void setup() {
   initSensorPins();
-  //startComm();
-  Serial.begin(9600);
+  startComm();
 }
 
 void loop() {
