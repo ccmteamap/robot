@@ -1,3 +1,4 @@
+#include"comm.h"
 #include <RF24_config.h>
 #include <RF24.h>
 #include <nRF24L01.h>
@@ -11,7 +12,7 @@ RF24 rf(CE, CSN);
 
 void startComm(){
   rf.begin();
-  rf.setPayloadSize(PAYLOAD_SIZE);
+  rf.setPayloadSize(PAYLOAD_SIZE); 
   rf.openReadingPipe(1, RX_ADDRESS);
   rf.openWritingPipe(TX_ADDRESS);
   rf.startListening();
@@ -31,3 +32,4 @@ bool read(void *buffer) {
 
 	return false;
 }
+

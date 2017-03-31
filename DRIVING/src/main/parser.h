@@ -3,6 +3,6 @@
 
 #include<stdint.h>
 
-void parse(uint8_t);
+void parse(uint8_t*);
 
 #endif
