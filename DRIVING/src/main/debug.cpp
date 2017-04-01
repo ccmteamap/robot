@@ -1,6 +1,5 @@
 #include"debug.h"
 #include"motor.h"
-#include"sensors.h"
 #include"main.h"
 #include"comm.h"
 
@@ -33,15 +32,24 @@ void sendDebugInfo(){
 }
 
 void sendMotorInfo(){
-  
+  Motor motors[] = {
+    mainMotor,
+    emmerMotor,
+    pompMotor
+  };
+
+  Motor_Info mInfos[3];
+
+  for(int i = 0; i < 3; ++i){
+    mInfos[i] = getMotorInfo(motors[i]);
+  }
 }
 
-char* getMotorInfo(Motor motor){
-  
+Motor_Info getMotorInfo(Motor motor){
+  return { motor.GetSpeed(), motor.GetPower() };
 }
 
 void sendDistanceInfo(){
-  
 }
 
 void sendStateInfo(){

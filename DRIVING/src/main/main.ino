@@ -27,7 +27,7 @@ void loop() {
 }
 
 void listenHome() {
-  static uint8_t buffer[PAYLOAD_SIZE];
+  uint8_t buffer[PAYLOAD_SIZE];
 
   if(read(buffer)){
     parse(buffer);

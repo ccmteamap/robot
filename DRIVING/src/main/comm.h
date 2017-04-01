@@ -3,7 +3,7 @@
 
 #include<stdint.h>
 
-#define PAYLOAD_SIZE 11 //instructie is max 10 bytes lang.
+#define PAYLOAD_SIZE 32
 
 void startComm();
 void send(const void*, uint8_t);
