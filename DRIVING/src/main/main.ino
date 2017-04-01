@@ -5,7 +5,6 @@
 */
 
 #include"main.h" //interface om robot aan/uit/pauze te zetten
-#include"states.h" //nodig voor alle constanten i.v.m. staat en hun acties
 #include"sensors.h" //nodig om de sensormask te krijgen
 #include"comm.h" //nodig om te communiceren met team
 #include"parser.h" //nodig om ontvangen instructies te ontleden
@@ -154,6 +153,6 @@ void stop(){
   currentState = Off;
 }
 
-
-
-
+State getState(){
+  return currentState;
+}
