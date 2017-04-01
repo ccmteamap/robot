@@ -3,7 +3,7 @@
 
 #include<stdint.h>
 
-#define PAYLOAD_SIZE 32
+#define PAYLOAD_SIZE 11
 
 void startComm();
 void send(const void*, uint8_t);
