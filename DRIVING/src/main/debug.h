@@ -11,7 +11,7 @@
 #define DEBUG_SENSORS 0x04
 
 void setDebugMask(int);
-void sendDebugInfo();
+void debug();
 
 typedef struct {
   int speed;

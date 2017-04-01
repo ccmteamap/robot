@@ -1,7 +1,7 @@
-#include"debug.h"
-#include"motor.h"
-#include"main.h"
-#include"comm.h"
+#include"debug.h" 
+#include"motor.h" //motoren
+#include"main.h" //state van robot
+#include"comm.h" //opsturen debug bericht
 
 static int debugMask;
 void sendMotorInfo();
@@ -13,7 +13,7 @@ void setDebugMask(int mask){
   debugMask = mask;
 }
 
-void sendDebugInfo(){
+void debug(){
   if(debugMask & DEBUG_MOTOR){
     sendMotorInfo();
   }
@@ -31,31 +31,53 @@ void sendDebugInfo(){
   }
 }
 
+void sendDebugMessage(Debug_Message message){
+  send(&message, sizeof message);
+}
+
 void sendMotorInfo(){
+  Debug_Message motorMessage = { DEBUG_MOTOR };
+  Debug_Body body;
   Motor motors[] = {
     mainMotor,
     emmerMotor,
     pompMotor
   };
 
-  Motor_Info mInfos[3];
-
   for(int i = 0; i < 3; ++i){
-    mInfos[i] = getMotorInfo(motors[i]);
+    body.motorInfo = { motors[i].GetSpeed(), motors[i].GetPower() };
+    motorMessage.body = body;
+
+    sendDebugMessage(motorMessage);
   }
 }
 
-Motor_Info getMotorInfo(Motor motor){
-  return { motor.GetSpeed(), motor.GetPower() };
-}
-
 void sendDistanceInfo(){
+  Debug_Message distanceMessage = { DEBUG_DISTANCE };
+  Debug_Body body;
+
+  body.distanceInfo = { ultraEAvrg.value, ultraPAvrg.value  };
+  distanceMessage.body = body;
+
+  sendDebugMessage(distanceMessage);
 }
 
 void sendStateInfo(){
-  
+  Debug_Message stateMessage = { DEBUG_STATE };
+  Debug_Body body;
+
+  body.stateInfo = { getState() };
+  stateMessage.body = body;
+
+  sendDebugMessage(stateMessage);
 }
 
 void sendSensorsInfo(){
-  
+  Debug_Message sensorsMessage = { DEBUG_SENSORS };
+  Debug_Body body;
+
+  body.sensorsInfo = { getSensorMask() };
+  sensorsMessage.body = body;
+
+  sendDebugMessage(sensorsMessage);
 }
