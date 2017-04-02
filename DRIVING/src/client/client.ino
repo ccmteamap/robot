@@ -55,7 +55,7 @@ void handleInput(){
 
 bool isValidInstruction(char *instruction){
   if(containsChar("RPS", *instruction) ||
-     isValidDebugConstruction(instruction) ||
+     isValidDebugInstruction(instruction) ||
      isValidMotorInstruction(instruction)){
     return true;
   }
@@ -79,11 +79,11 @@ bool isValidDebugInstruction(char *instruction){
   }
 }
 
-bool isValidMotorInstruction(){
+bool isValidMotorInstruction(char *instruction){
   if(*instruction == 'M'){
     ++instruction;
     if(containsChar("SP", *instruction)){
-      value = atoi(instruction);
+      int value = atoi(instruction);
       if(*instruction == 'S'){
 	return value < 255 && value > -255;
       }
