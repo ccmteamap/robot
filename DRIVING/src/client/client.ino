@@ -83,7 +83,7 @@ bool isValidMotorInstruction(char *instruction){
   if(*instruction == 'M'){
     ++instruction;
     if(containsChar("SP", *instruction)){
-      int value = atoi(instruction);
+      int value = atoi(instruction + 1);
       if(*instruction == 'S'){
 	return value < 255 && value > -255;
       }
@@ -142,9 +142,9 @@ void printMotorInfo(Motor_Info info){
 
 void printDistanceInfo(Distance_Info info){
   Serial.print("Afstand emmer: ");
-  Serial.print(info.emmerDistance);
+  Serial.print(info.emmerDistance / 59.0);
   Serial.print(", afstand pomp: ");
-  Serial.println(info.pompDistance);
+  Serial.println(info.pompDistance / 59.0);
 }
 
 void printStateInfo(State_Info info){
@@ -204,12 +204,6 @@ void printSensorsInfo(Sensors_Info info){
   }
 
   Serial.println(" )");
-}
-
-bool isValidSymbol(char character){
-  static char symbols[] = "RPSMDTAM-";
-
-  return !containsChar(symbols, character);
 }
 
 bool containsChar(char *string, char character){
