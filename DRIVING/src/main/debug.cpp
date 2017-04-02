@@ -45,7 +45,7 @@ void sendMotorInfo(){
   };
 
   for(int i = 0; i < 3; ++i){
-    body.motorInfo = { motors[i].GetSpeed(), motors[i].GetPower() };
+    body.motorInfo = { (uint8_t)i, motors[i].GetSpeed(), motors[i].GetPower() };
     motorMessage.body = body;
 
     sendDebugMessage(motorMessage);
