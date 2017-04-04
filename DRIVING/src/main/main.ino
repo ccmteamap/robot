@@ -9,7 +9,8 @@
 #include"comm.h" //kijken of er instructie zijn ontvangen.
 #include"parser.h" //nodig om ontvangen instructies te ontleden
 #include"debug.h"//nodig om debug informatie door te laten sturen
-#include<stdint.h> 
+#include"motor.h"
+#include<stdint.h>
 
 bool running;
 State currentState = Off;
@@ -142,6 +143,7 @@ void stateAction() {
 
 void pause(){
   running = false;
+  stopMotors();
 }
 
 void run(){
@@ -151,8 +153,15 @@ void run(){
 void stop(){
   running = false;
   currentState = Off;
+  stopMotors();
 }
 
 State getState(){
   return currentState;
+}
+
+void stopMotors(){
+  mainMotor.SetSpeed(0);
+  emmerMotor.SetSpeed(0);
+  pompMotor.SetSpeed(0);
 }

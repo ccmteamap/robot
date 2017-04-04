@@ -14,7 +14,8 @@ typedef enum {
   RaisingPump,
   DrivingBackwards, 
   RaisingBucket,
-  LoweringBucket
+  LoweringBucket,
+  Manual
 } State;
 
 #endif

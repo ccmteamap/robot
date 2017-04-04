@@ -77,10 +77,6 @@ void parseMotorCommand(uint8_t *buffer){
 }
 
 void selectMotor(uint8_t *buffer, Motor *motor){
-  extern Motor mainMotor;
-  extern Motor emmerMotor;
-  extern Motor pompMotor;
-  
   switch(*(buffer + 1)){
   case '0':
     motor = &mainMotor;

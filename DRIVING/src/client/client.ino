@@ -80,8 +80,8 @@ bool isValidDebugInstruction(char *instruction){
 }
 
 bool isValidMotorInstruction(char *instruction){
-  if(*instruction == 'M'){
-    ++instruction;
+  if(*instruction == 'M' && *(instruction + 1) >= 0 && *(instruction + 1) <= 2){
+    instruction += 2;
     if(containsChar("SP", *instruction)){
       int value = atoi(instruction + 1);
       if(*instruction == 'S'){
