@@ -12,7 +12,6 @@ RF24 rf(CE, CSN);
 
 void startComm(){
   rf.begin();
-  rf.setPayloadSize(PAYLOAD_SIZE); 
   rf.openReadingPipe(1, RX_ADDRESS);
   rf.openWritingPipe(TX_ADDRESS);
   rf.startListening();

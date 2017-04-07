@@ -2,9 +2,11 @@
 #include"main.h"
 #include"motor.h"
 #include"stdlib.h"
+#include"debug.h"
 
 void parseMotorCommand(uint8_t*);
 void selectMotor(uint8_t*, Motor*);
+void parseDebugCommand(uint8_t*);
 
 void parse(uint8_t *buffer){
   switch(*buffer){
@@ -24,7 +26,38 @@ void parse(uint8_t *buffer){
   case 'M':
     parseMotorCommand(buffer);
     break;
+
+  case 'D':
+    parseDebugCommand(buffer);
+    break;
   }
+}
+
+void parseDebugCommand(uint8_t *buffer){
+  int offset = 1;
+  int debugMask = 0;
+
+  while(buffer + (offset++)){
+    switch(*(buffer + offset)){
+    case 'M':
+      debugMask |= DEBUG_MOTOR;
+      break;
+
+    case 'A':
+      debugMask |= DEBUG_DISTANCE;
+      break;
+
+    case 'T':
+      debugMask |= DEBUG_STATE;
+      break;
+
+    case 'S':
+      debugMask |= DEBUG_SENSORS;
+      break;
+    }
+  }
+
+  setDebugMask(debugMask);
 }
 
 void parseMotorCommand(uint8_t *buffer){

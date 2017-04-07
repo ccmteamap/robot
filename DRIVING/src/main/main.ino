@@ -5,10 +5,10 @@
 */
 
 #include"main.h" //interface om robot aan/uit/pauze te zetten
-#include"states.h" //nodig voor alle constanten i.v.m. staat en hun acties
 #include"sensors.h" //nodig om de sensormask te krijgen
-#include"comm.h" //nodig om te communiceren met team
+#include"comm.h" //kijken of er instructie zijn ontvangen.
 #include"parser.h" //nodig om ontvangen instructies te ontleden
+#include"debug.h"//nodig om debug informatie door te laten sturen
 #include<stdint.h> 
 
 bool running;
@@ -28,7 +28,7 @@ void loop() {
 }
 
 void listenHome() {
-  static uint8_t buffer[PAYLOAD_SIZE];
+  uint8_t buffer[PAYLOAD_SIZE];
 
   if(read(buffer)){
     parse(buffer);
@@ -36,8 +36,7 @@ void listenHome() {
 }
 
 void callHome() {
-  send(&sensorMask, sizeof sensorMask);
-  send(&currentState, sizeof currentState);
+  debug();
 }
 
 void inputScan() {
@@ -154,6 +153,6 @@ void stop(){
   currentState = Off;
 }
 
-
-
-
+State getState(){
+  return currentState;
+}
