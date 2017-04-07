@@ -29,6 +29,7 @@ void handleInput(){
     char symbol = Serial.read();
     if(symbol == '\0'){
       buffer[index] = symbol;
+
       if(isValidInstruction(buffer)){
 	if(!send(buffer, sizeof buffer)){
 	  Serial.print("COMMUNICATION ERROR: could not send instruction.");
@@ -37,10 +38,11 @@ void handleInput(){
       else {
 	Serial.println("SYNTAX ERROR: not a valid instruction.");
       }
+
       index = 0;
     }
     
-    else if(index < PAYLOAD_SIZE - 1){
+    else if(index < PAYLOAD_SIZE){
       if(symbol != ' ' && symbol != '\t'){
 	buffer[index++] = symbol;
       }
