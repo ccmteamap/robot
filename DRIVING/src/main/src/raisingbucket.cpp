@@ -1,3 +1,7 @@
 void raiseBucket(){
   
 }
+
+void stopRaiseBucket(){
+  
+}

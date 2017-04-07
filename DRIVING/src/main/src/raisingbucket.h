@@ -2,5 +2,6 @@
 #define RAISINGBUCKET_H
 
 void raiseBucket();
+void stopRaiseBucket();
 
 #endif

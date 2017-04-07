@@ -19,5 +19,7 @@ class Motor {
 };
 
 extern Motor mainMotor;
+extern Motor emmerMotor;
+extern Motor pompMotor;
 
 #endif

@@ -4,9 +4,12 @@
    2017
 */
 
-#include"states.h"
-#include"sensors.h"
-#include"comm.h"
+#include"main.h" //interface om robot aan/uit/pauze te zetten
+#include"states.h" //nodig voor alle constanten i.v.m. staat en hun acties
+#include"sensors.h" //nodig om de sensormask te krijgen
+#include"comm.h" //nodig om te communiceren met team
+#include"parser.h" //nodig om ontvangen instructies te ontleden
+#include<stdint.h> 
 
 bool running;
 State currentState = Off;
@@ -25,7 +28,11 @@ void loop() {
 }
 
 void listenHome() {
+  static uint8_t buffer[PAYLOAD_SIZE];
 
+  if(read(buffer)){
+    parse(buffer);
+  }
 }
 
 void callHome() {
@@ -53,6 +60,7 @@ void updateState() {
     //Als 'aan' en eindeloopschakelaar pompzijde ingedrukt
     case DrivingForward:
       if (sensorMask & ELOOPPOMP && running) {
+	stopDriving();
         currentState = LoweringPump;
       }
       break;
@@ -60,6 +68,7 @@ void updateState() {
     //Als 'aan' en pompsensor emmer zijn ingedrukt (dus emmer is vol)
     case LoweringPump:
       if (sensorMask & POMP1 && running) {
+	stopLowerPump();
         currentState = RaisingPump;
       }
       break;
@@ -67,6 +76,7 @@ void updateState() {
     //Als 'aan' en pompsensor bassin zijn ingedrukt (dus pomp is opgehaald)
     case RaisingPump:
       if (sensorMask & POMP2 && running){
+	stopRaisePump();
         currentState = DrivingBackwards;
       }
       break;
@@ -74,6 +84,7 @@ void updateState() {
     //Als 'aan' en eindeloopschakelaar emmer zijde ingedrukt (robot tegen vuur zijde)
     case DrivingBackwards:
       if (sensorMask & ELOOPEMMER && running) {
+	stopDriving();
         currentState = RaisingBucket;
       }
       break;
@@ -81,6 +92,7 @@ void updateState() {
     //Als 'aan' en emmer sensor bovenaan ingedrukt (emmer is dus opgehoffen)
     case RaisingBucket:
       if (sensorMask & EMMER1 && running) {
+	stopRaiseBucket();
         currentState = LoweringBucket;
       }
       break;
@@ -88,6 +100,7 @@ void updateState() {
     //Als 'aan' en emmer sensor onderaan ingedrukt (emmer terug gedaald)
     case LoweringBucket:
       if (sensorMask & EMMER2 && running) {
+	stopLowerBucket();
         currentState = DrivingForward;
       }
       break;
@@ -127,6 +140,20 @@ void stateAction() {
       break;
   }
 }
+
+void pause(){
+  running = false;
+}
+
+void run(){
+  running = true;
+}
+
+void stop(){
+  running = false;
+  currentState = Off;
+}
+
 
 
 
