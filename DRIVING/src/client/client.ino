@@ -42,7 +42,7 @@ void handleInput(){
       index = 0;
     }
     
-    else if(index < PAYLOAD_SIZE){
+    else if(index < PAYLOAD_SIZE - 1){ //- 1 want laatste plaats in buffer is voor null terminator.
       if(symbol != ' ' && symbol != '\t'){
 	buffer[index++] = symbol;
       }
