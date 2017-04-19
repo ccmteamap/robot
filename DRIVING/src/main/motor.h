@@ -7,6 +7,8 @@ class Motor {
   int backwardPin;
   int speed;
   unsigned int power; //power between 0 and 100
+  void outputToMotor();
+  int mapSpeed();
 
  public:
   Motor(int, int);
@@ -17,5 +19,7 @@ class Motor {
 };
 
 extern Motor mainMotor;
+extern Motor emmerMotor;
+extern Motor pompMotor;
 
 #endif

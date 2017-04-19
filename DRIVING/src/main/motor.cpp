@@ -1,7 +1,9 @@
 #include"motor.h"
 #include<Arduino.h>
 
-Motor mainMotor(5, 6);
+Motor mainMotor(3, 5);
+Motor emmerMotor(6, 9);
+Motor pompMotor(10, 11);
 
 Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
   pinMode(fPin, OUTPUT);
@@ -11,18 +13,8 @@ Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
 
 //tussen -255 (achteruit, richting vuur) en 255 (vooruit richting bassin)
 void Motor::SetSpeed(int newSpeed){
-  int mappedSpeed = (newSpeed * power) / 100;
-  
-  if(newSpeed < 0) {
-    analogWrite(backwardPin, mappedSpeed);
-    analogWrite(forwardPin, 0);
-  }
-  else {
-    analogWrite(backwardPin, 0);
-    analogWrite(forwardPin, mappedSpeed);
-  }
-
   speed = newSpeed;
+  outputToMotor();
 }
 
 int Motor::GetSpeed() {
@@ -31,11 +23,27 @@ int Motor::GetSpeed() {
 
 void Motor::SetPower(unsigned int newPower) {
 	power = newPower % 101;
-
-	speed = (speed * power) / 100;
+  outputToMotor();
 }
 
 unsigned int Motor::GetPower() {
 	return power;
+}
+
+void Motor::outputToMotor(){
+  int outSpeed = mapSpeed();
+  
+  if(outSpeed < 0) {
+    analogWrite(backwardPin, outSpeed);
+    analogWrite(forwardPin, 0);
+  }
+  else {
+    analogWrite(backwardPin, 0);
+    analogWrite(forwardPin, outSpeed);
+  }
+}
+
+int Motor::mapSpeed(){
+  return (speed * power) / 100;
 }
 

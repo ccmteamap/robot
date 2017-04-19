@@ -10,8 +10,6 @@
 
 RF24 rf(CE, CSN);
 
-bool listening = true;
-
 void startComm(){
   rf.begin();
   rf.openReadingPipe(1, RX_ADDRESS);
@@ -25,11 +23,12 @@ void send(const void *msg, uint8_t size){
   rf.startListening();
 }
 
-bool read(Command *commandBuffer) {
+bool read(void *buffer) {
 	if (rf.available()) {
-	  rf.read(commandBuffer, sizeof(*commandBuffer));
+	  rf.read(&buffer, PAYLOAD_SIZE);
 	  return true;
-   }
+	}
 
 	return false;
 }
+

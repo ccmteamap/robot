@@ -2,15 +2,11 @@
 #define COMM_H
 
 #include<stdint.h>
-#include"command.h"
 
-typedef struct {
-  uint8_t command; //P: pause, R: running, H: halt, M: motor, S: state
-  uint8_t modifier; // 0x01: 
-} Packet;
+#define PAYLOAD_SIZE 11
 
 void startComm();
 void send(const void*, uint8_t);
-bool read(Command*);
+bool read(void*);
 
 #endif

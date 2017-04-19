@@ -1,15 +1,21 @@
-Arduino uno
+Arduino mega
 
-| pin |                     |
-|  13 | SCK                 |
-|  12 | MOSI                |
-|  11 | MISO                |
-|  10 | nRF24               |
-|   9 | nRF24               |
-|  5~ | motor onderstel     |
-|  6~ | motor onderstel     |
-|   0 | ultra pomp echo     |
-|   1 | ultra pomp trigger  |
-|   2 | ultra emmer  echo   |
-|   3 | ultra emmer trigger |
+| pin  |                      |
 
+| D52  | Ultra pomp echo      |
+| D50  | Ultra pomp trigger   |
+| D48  | Ultra emmer echo     |
+| D46  | Ultra emmer trigger  |
+
+| D13~ | Backward pomp motor  |
+| D12~ | Forward pomp motor   |
+| D10~ | Backward emmer motor |
+| D9~  | Forward emmer motor  |
+| D7~  | Backward main motor  |
+| D6~  | Forward main motor   |
+
+| ?    | SCK                  |
+| ?    | MOSI                 |
+| ?    | MISO                 |
+| ?    | CE (wireless)        |
+| ?    | CSN (wireless)       |
