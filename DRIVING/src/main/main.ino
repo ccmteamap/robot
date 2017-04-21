@@ -50,7 +50,7 @@ void executeProgram() {
   stateAction();
 }
 
-void updateState() {
+void updateState() { //GETEST
   switch (currentState) {
     case Off:
       if(running){
