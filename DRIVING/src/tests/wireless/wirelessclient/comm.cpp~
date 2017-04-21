@@ -5,8 +5,8 @@
 
 #define CE 9
 #define CSN 10
-#define TX_ADDRESS 0xF0F0F0F0BB
-#define RX_ADDRESS 0xF0F0F0F0AA
+#define TX_ADDRESS 0xFFFFFFFFFFAA
+#define RX_ADDRESS 0xFFFFFFFFFFBB
 
 RF24 rf(CE, CSN);
 
@@ -17,17 +17,15 @@ void startComm(){
   rf.startListening();
 }
 
-bool send(const void *msg, uint8_t size){
+void send(const void *msg, uint8_t size){
   rf.stopListening();
-  bool success = rf.write(msg, size);
+  rf.write(msg, size);
   rf.startListening();
-
-  return success;
 }
 
-bool read(void *buffer, uint8_t size) {
+bool read(void *buffer) {
 	if (rf.available()) {
-	  rf.read(&buffer, size);
+	  rf.read(&buffer, PAYLOAD_SIZE);
 	  return true;
 	}
 

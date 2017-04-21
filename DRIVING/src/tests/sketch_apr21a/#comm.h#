@@ -10,3 +10,7 @@ void send(const void*, uint8_t);
 bool read(void*, uint8_t);
 
 #endif
+
+
+NANO 1
+UNO 0

@@ -1,9 +1,9 @@
 #include"../motor.h"
 
-void raiseBucket(){
+void lowerBucket(){
   
 }
 
-void stopRaiseBucket(){
+void stopLowerBucket(){
   emmerMotor.SetSpeed(0);
 }

@@ -1,3 +1,4 @@
+/*
 #include"debug.h" 
 #include"motor.h" //motoren
 #include"main.h" //state van robot
@@ -13,7 +14,6 @@ void setDebugMask(int mask){
   debugMask = mask;
 }
 
-//GETEST
 void debug(){
   if(debugMask & DEBUG_MOTOR){
     sendMotorInfo();
@@ -32,11 +32,11 @@ void debug(){
   }
 }
 
+
 void sendDebugMessage(Debug_Message message){
   send(&message, sizeof message);
 }
 
-//GETEST
 void sendMotorInfo(){
   Debug_Message motorMessage = { DEBUG_MOTOR };
   Debug_Body body;
@@ -54,7 +54,7 @@ void sendMotorInfo(){
   }
 }
 
-//GETEST
+
 void sendDistanceInfo(){
   Debug_Message distanceMessage = { DEBUG_DISTANCE };
   Debug_Body body;
@@ -65,7 +65,6 @@ void sendDistanceInfo(){
   sendDebugMessage(distanceMessage);
 }
 
-//GETEST
 void sendStateInfo(){
   Debug_Message stateMessage = { DEBUG_STATE };
   Debug_Body body;
@@ -76,7 +75,6 @@ void sendStateInfo(){
   sendDebugMessage(stateMessage);
 }
 
-//GETEST
 void sendSensorsInfo(){
   Debug_Message sensorsMessage = { DEBUG_SENSORS };
   Debug_Body body;
@@ -86,3 +84,4 @@ void sendSensorsInfo(){
 
   sendDebugMessage(sensorsMessage);
 }
+*/

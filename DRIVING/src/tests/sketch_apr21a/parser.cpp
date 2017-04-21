@@ -1,3 +1,4 @@
+/*
 #include"parser.h"
 #include"main.h"
 #include"motor.h"
@@ -8,7 +9,6 @@ void parseMotorCommand(uint8_t*);
 void selectMotor(uint8_t*, Motor*);
 void parseDebugCommand(uint8_t*);
 
-//GETEST
 void parse(uint8_t *buffer){
   switch(*buffer){
 
@@ -34,12 +34,12 @@ void parse(uint8_t *buffer){
   }
 }
 
-//GETEST
 void parseDebugCommand(uint8_t *buffer){
+  int offset = 1;
   int debugMask = 0;
 
-  while(*++buffer){
-    switch(*buffer){
+  while(buffer + (offset++)){
+    switch(*(buffer + offset)){
     case 'M':
       debugMask |= DEBUG_MOTOR;
       break;
@@ -92,3 +92,4 @@ void selectMotor(uint8_t *buffer, Motor *motor){
     break;
   }
 }
+*/
