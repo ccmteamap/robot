@@ -1,4 +1,4 @@
-#include"expoavrg.h" //GETEST
+#include"expoavrg.h"
 
 ExpoAvrg::ExpoAvrg(double initVal, int size) : value(initVal), size(size){}
 
