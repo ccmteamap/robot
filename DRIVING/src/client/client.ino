@@ -21,30 +21,32 @@ void checkSerial(){
   }
 }
 
+//GETEST
 void handleInput(){
   static char buffer[PAYLOAD_SIZE];
   static int index;
   
   while(Serial.available()){
     char symbol = Serial.read();
-    if(symbol == '\0'){
-      buffer[index] = symbol;
+    if(symbol == '\n'){
+      buffer[index] = '\0';
 
       if(isValidInstruction(buffer)){
-	if(!send(buffer, sizeof buffer)){
-	  Serial.print("COMMUNICATION ERROR: could not send instruction.");
-	}
+	      if(!send(buffer, sizeof buffer)){
+	        Serial.println("COMMUNICATION ERROR: could not send instruction.");
+	      }
       }
+      
       else {
-	Serial.println("SYNTAX ERROR: not a valid instruction.");
+	      Serial.println("SYNTAX ERROR: not a valid instruction.");
       }
 
       index = 0;
     }
     
-    else if(index < PAYLOAD_SIZE - 1){ //- 1 want laatste plaats in buffer is voor null terminator.
+    else if(index < PAYLOAD_SIZE - 1){ //- 1 want laatste plaats in buffer is voor newline
       if(symbol != ' ' && symbol != '\t'){
-	buffer[index++] = symbol;
+	      buffer[index++] = symbol;
       }
     }
 
@@ -55,6 +57,7 @@ void handleInput(){
   }
 }
 
+//GETEST
 bool isValidInstruction(char *instruction){
   if(containsChar("RPS", *instruction) ||
      isValidDebugInstruction(instruction) ||
@@ -66,65 +69,75 @@ bool isValidInstruction(char *instruction){
   }
 }
 
+//GETEST
 bool isValidDebugInstruction(char *instruction){
-  if(*instruction == 'D'){
-    ++instruction;
-    while(instruction++){
+  if(*instruction == 'D'){ 
+    while(*++instruction){
       if(!containsChar("STAM", *instruction)){
-	return false;
+	      return false;
       }
     }
+    
     return true;
   }
+  
   else {
     return false;
   }
 }
 
+//GETEST
 bool isValidMotorInstruction(char *instruction){
-  if(*instruction == 'M' && *(instruction + 1) >= 0 && *(instruction + 1) <= 2){
+  if(*instruction == 'M' && *(instruction + 1) - '0' >= 0 && *(instruction + 1) - '0' <= 2){
     instruction += 2;
+    
     if(containsChar("SP", *instruction)){
       int value = atoi(instruction + 1);
+      
       if(*instruction == 'S'){
-	return value < 255 && value > -255;
+	      return value < 255 && value > -255;
       }
+      
       else if(*instruction == 'P'){
-	return value < 100 && value > 0;
+	      return value <= 100 && value >= 0;
       }
     }
+    
     else {
       return false;
     }
   }
+  
   else {
     return false;
   }
 }
 
+//GETEST
 void checkRF(){
   Debug_Message message;
   if(read(&message, sizeof message)){
     switch(message.type){
-    case 'DEBUG_MOTOR':
+    case DEBUG_MOTOR:
       printMotorInfo(message.body.motorInfo);
       break;
 
-    case 'DEBUG_DISTANCE':
+    case DEBUG_DISTANCE:
       printDistanceInfo(message.body.distanceInfo);
       break;
 
-    case 'DEBUG_STATE':
+    case DEBUG_STATE:
       printStateInfo(message.body.stateInfo);
       break;
 
-    case 'DEBUG_SENSORS':
+    case DEBUG_SENSORS:
       printSensorsInfo(message.body.sensorsInfo);
       break;
     }
   }
 }
 
+//GETEST
 void printMotorInfo(Motor_Info info){
   static const char *motorIds[] = {
     "main",
@@ -142,6 +155,7 @@ void printMotorInfo(Motor_Info info){
   Serial.println(info.power);
 }
 
+//GETEST
 void printDistanceInfo(Distance_Info info){
   Serial.print("Afstand emmer: ");
   Serial.print(info.emmerDistance / 59.0);
@@ -149,6 +163,7 @@ void printDistanceInfo(Distance_Info info){
   Serial.println(info.pompDistance / 59.0);
 }
 
+//GETEST
 void printStateInfo(State_Info info){
   Serial.print("Staat: ");
   switch(info.state){
@@ -176,6 +191,7 @@ void printStateInfo(State_Info info){
   }
 }
 
+//GETEST
 void printSensorsInfo(Sensors_Info info){
   Serial.print("Sensormask: ");
   Serial.print(info.sensorMask);
@@ -208,6 +224,7 @@ void printSensorsInfo(Sensors_Info info){
   Serial.println(" )");
 }
 
+//GETEST
 bool containsChar(char *string, char character){
   if(!(*string)){ //if string is empty
     return false;

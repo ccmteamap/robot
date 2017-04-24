@@ -5,18 +5,20 @@
 
 #define CE 9
 #define CSN 10
-#define TX_ADDRESS 0xF0F0F0F0BB
-#define RX_ADDRESS 0xF0F0F0F0AA
 
 RF24 rf(CE, CSN);
 
+//GETEST
 void startComm(){
+  uint8_t addresses[][6] = { "RNode", "CNode" };
+  
   rf.begin();
-  rf.openReadingPipe(1, RX_ADDRESS);
-  rf.openWritingPipe(TX_ADDRESS);
+  rf.openReadingPipe(1, addresses[1]);
+  rf.openWritingPipe(addresses[0]);
   rf.startListening();
 }
 
+//GETEST
 bool send(const void *msg, uint8_t size){
   rf.stopListening();
   bool success = rf.write(msg, size);
@@ -25,9 +27,10 @@ bool send(const void *msg, uint8_t size){
   return success;
 }
 
+//GETEST
 bool read(void *buffer, uint8_t size) {
 	if (rf.available()) {
-	  rf.read(&buffer, size);
+	  rf.read(buffer, size);
 	  return true;
 	}
 

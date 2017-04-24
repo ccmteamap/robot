@@ -8,8 +8,7 @@ Motor pompMotor(10, 11);
 Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
   pinMode(fPin, OUTPUT);
   pinMode(bPin, OUTPUT);
-  this->speed = 0;
-  this->power = 100;
+  this->power=100;
 }
 
 //tussen -255 (achteruit, richting vuur) en 255 (vooruit richting bassin)

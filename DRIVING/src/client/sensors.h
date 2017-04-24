@@ -8,6 +8,6 @@
 #define EMMER1 0x10
 #define EMMER2 0x20
 
-int getSensorMask(); //returns a mask indicating which sensors are
+//int getSensorMask(); //returns a mask indicating which sensors are
 
 #endif
