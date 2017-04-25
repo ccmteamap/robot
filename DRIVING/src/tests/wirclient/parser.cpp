@@ -5,7 +5,7 @@
 #include"debug.h"
 
 void parseMotorCommand(uint8_t*);
-void selectMotor(uint8_t*, Motor**);
+void selectMotor(uint8_t*, Motor*);
 void parseDebugCommand(uint8_t*);
 
 //GETEST
@@ -61,12 +61,11 @@ void parseDebugCommand(uint8_t *buffer){
   setDebugMask(debugMask);
 }
 
-//GETEST
 void parseMotorCommand(uint8_t *buffer){
   Motor *motor = NULL;
   int value;
 
-  selectMotor(buffer, &motor);
+  selectMotor(buffer, motor);
   value = atoi(buffer + 3);
 
   switch(*(buffer + 2)){
@@ -78,19 +77,18 @@ void parseMotorCommand(uint8_t *buffer){
   }
 }
 
-//GETEST
-void selectMotor(uint8_t *buffer, Motor **motor){
+void selectMotor(uint8_t *buffer, Motor *motor){
   switch(*(buffer + 1)){
   case '0':
-    *motor = &mainMotor;
+    motor = &mainMotor;
     break;
 
   case '1':
-    *motor = &emmerMotor;
+    motor = &emmerMotor;
     break;
 
   case '2':
-    *motor = &pompMotor;
+    motor = &emmerMotor;
     break;
   }
 }

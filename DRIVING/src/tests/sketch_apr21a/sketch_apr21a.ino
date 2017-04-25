@@ -1,122 +1,22 @@
-#include"comm.h"
-#include"debug.h"
 #include"sensors.h"
-#include"states.h"
-#include<string.h>
-#include<stdlib.h>
+#include"debug.h"
+#include"comm.h"
 
-void setup(){
+void setup() {
   Serial.begin(9600);
   startComm();
 }
 
-void loop(){
-  checkSerial(); //see if we received data on the serial connection
-  checkRF(); //see if we received data on the wireless connection
+void loop() {
+  // put your main code here, to run repeatedly:
+  checkRF();
 }
 
-void checkSerial(){
-  if(Serial.available()){
-    handleInput();
-  }
-}
-
-//GETEST
-void handleInput(){
-  static char buffer[PAYLOAD_SIZE];
-  static int index;
-  
-  while(Serial.available()){
-    char symbol = Serial.read();
-    if(symbol == '\n'){
-      buffer[index] = '\0';
-
-      if(isValidInstruction(buffer)){
-	      if(!send(buffer, sizeof buffer)){
-	        Serial.println("COMMUNICATION ERROR: could not send instruction.");
-	      }
-      }
-      
-      else {
-	      Serial.println("SYNTAX ERROR: not a valid instruction.");
-      }
-
-      index = 0;
-    }
-    
-    else if(index < PAYLOAD_SIZE - 1){ //- 1 want laatste plaats in buffer is voor newline
-      if(symbol != ' ' && symbol != '\t'){
-	      buffer[index++] = symbol;
-      }
-    }
-
-    else {
-      Serial.println("SYNTAX ERROR: instruction too long.");
-      index = 0;
-    }
-  }
-}
-
-//GETEST
-bool isValidInstruction(char *instruction){
-  if(containsChar("RPS", *instruction) ||
-     isValidDebugInstruction(instruction) ||
-     isValidMotorInstruction(instruction)){
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
-//GETEST
-bool isValidDebugInstruction(char *instruction){
-  if(*instruction == 'D'){ 
-    while(*++instruction){
-      if(!containsChar("STAM", *instruction)){
-	      return false;
-      }
-    }
-    
-    return true;
-  }
-  
-  else {
-    return false;
-  }
-}
-
-//GETEST
-bool isValidMotorInstruction(char *instruction){
-  if(*instruction == 'M' && *(instruction + 1) - '0' >= 0 && *(instruction + 1) - '0' <= 2){
-    instruction += 2;
-    
-    if(containsChar("SP", *instruction)){
-      int value = atoi(instruction + 1);
-      
-      if(*instruction == 'S'){
-	      return value < 255 && value > -255;
-      }
-      
-      else if(*instruction == 'P'){
-	      return value <= 100 && value >= 0;
-      }
-    }
-    
-    else {
-      return false;
-    }
-  }
-  
-  else {
-    return false;
-  }
-}
-
-//GETEST
 void checkRF(){
   Debug_Message message;
   if(read(&message, sizeof message)){
+    //Serial.println("received");
+    //Serial.println(message.type);
     switch(message.type){
     case DEBUG_MOTOR:
       printMotorInfo(message.body.motorInfo);
