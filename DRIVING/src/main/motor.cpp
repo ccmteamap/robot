@@ -1,9 +1,9 @@
 #include"motor.h"
 #include<Arduino.h>
 
-Motor mainMotor(3, 5);
-Motor emmerMotor(6, 9);
-Motor pompMotor(10, 11);
+Motor mainMotor(6, 7);
+Motor emmerMotor(9, 10);
+Motor pompMotor(12, 13);
 
 Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
   pinMode(fPin, OUTPUT);

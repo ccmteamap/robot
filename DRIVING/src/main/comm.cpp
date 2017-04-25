@@ -3,8 +3,8 @@
 #include <RF24.h>
 #include <nRF24L01.h>
 
-#define CE 9
-#define CSN 10
+#define CE 4
+#define CSN 3
 #define TX_ADDRESS 0xFFFFFFFFFFAA
 #define RX_ADDRESS 0xFFFFFFFFFFBB
 

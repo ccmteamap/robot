@@ -3,10 +3,10 @@
 #include"sensors.h"
 #include"expoavrg.h"
 
-#define ULTRA_E_TRIGGER 2 //Ultrasone afstandssensor emmer zijde
-#define ULTRA_E_ECHO 1
-#define ULTRA_P_TRIGGER 7 //Ultrasone afstandssensor pomp zijde
-#define ULTRA_P_ECHO 4
+#define ULTRA_E_TRIGGER 22 //Ultrasone afstandssensor emmer zijde
+#define ULTRA_E_ECHO 24
+#define ULTRA_P_TRIGGER 26 //Ultrasone afstandssensor pomp zijde
+#define ULTRA_P_ECHO 28
 
 #define MAXDISTANCE 900
 #define NUM_PINS 6
