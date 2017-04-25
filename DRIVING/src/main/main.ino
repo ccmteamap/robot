@@ -31,7 +31,7 @@ void loop() {
 void listenHome() {
   uint8_t buffer[PAYLOAD_SIZE];
 
-  if(read(buffer)){
+  if(read(buffer, PAYLOAD_SIZE)){
     parse(buffer);
   }
 }
@@ -50,7 +50,7 @@ void executeProgram() {
   stateAction();
 }
 
-void updateState() {
+void updateState() { //GETEST
   switch (currentState) {
     case Off:
       if(running){
@@ -112,6 +112,7 @@ void updateState() {
   }
 }
 
+//GETEST
 void stateAction() {
   switch (currentState) {
     case DrivingForward:

@@ -32,7 +32,6 @@ void debug(){
   }
 }
 
-//GETEST
 void sendDebugMessage(Debug_Message message){
   send(&message, sizeof message);
 }
