@@ -2,8 +2,10 @@
 #include"../motor.h"
 #include"math.h"
 
+double acceleration(double);
+
 void drive(bool forward){
-  double x = ultraPAvrg <= ultraEAvrg ? ultraPAvrg : ultraEAvrg;
+  double x = ultraPAvrg.value <= ultraEAvrg.value ? ultraPAvrg.value : ultraEAvrg.value;
   double y = acceleration(x);
 
   int speed = (int)(y + 0.5);
