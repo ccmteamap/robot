@@ -6,7 +6,7 @@
 #define PAYLOAD_SIZE 11
 
 void startComm();
-void send(const void*, uint8_t);
-bool read(void*);
+bool send(const void*, uint8_t);
+bool read(void*, uint8_t);
 
 #endif
