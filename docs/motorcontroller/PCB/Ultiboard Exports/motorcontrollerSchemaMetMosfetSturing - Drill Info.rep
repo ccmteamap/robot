@@ -1,0 +1,22 @@
+ULTIBOARD DRILL REPORT
+
+Design: motorcontrollerSchemaMetMosfetSturing
+
+DRILL FILE SETTINGS
+Excellon 2, Absolute, Metric, 3.4 
+
+
+DEFINITION COPPER LAYERS
+Copper Top
+Copper Bottom
+
+
+--------------------------------------------------------------------
+
+DRILLFILE                                                              LAMINATION
+motorcontrollerSchemaMetMosfetSturing - Copper Top-Copper Bottom.drl   Copper Top .. Copper Bottom
+
+TOOL     SIZE   TYPE  COUNT
+   1   1.0000    PTH     37
+   2   6.0000   NPTH      4
+   3   1.5000    PTH      4
