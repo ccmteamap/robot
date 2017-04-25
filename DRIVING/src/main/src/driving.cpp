@@ -1,15 +1,13 @@
 #include"../sensors.h"
 #include"../motor.h"
+#include<math.h>
 
 void drive(bool forward){
-  extern Motor mainMotor;
-  extern ExpoAvrg ultraPAvrg;
-  extern ExpoAvrg ultraEAvrg;
-
   double x = ultraPAvrg <= ultraEAvrg ? ultraPAvrg : ultraEAvrg;
-  double y = function(x);
+  double y = acceleration(x);
 
   int speed = (int)(y + 0.5);
+  speed %= 255;
 
   if(!forward){
     speed *= -1;
@@ -19,12 +17,11 @@ void drive(bool forward){
 }
 
 void stopDriving(){
-  extern Motor mainMotor;
   mainMotor.SetSpeed(0);
 }
 
-void function(double x){
-
-  return y;
+//GETEST
+double acceleration(double x){
+  return (127.5 * sin(-0.00071973 * x + 4.7124) + 127.5);
 }
 
