@@ -2,8 +2,9 @@
 #include"motor.h" //motoren
 #include"main.h" //state van robot
 #include"comm.h" //opsturen debug bericht
+#include"Arduino.h"
 
-static int debugMask;
+static int debugMask = 0;
 void sendMotorInfo();
 void sendDistanceInfo();
 void sendStateInfo();
@@ -15,6 +16,18 @@ void setDebugMask(int mask){
 
 //GETEST
 void debug(){
+  static long startTime = millis();
+  static int pause = 0;
+  static long currentTime = 0;
+
+  currentTime = millis();
+
+  if(currentTime - startTime <= pause){
+    return;
+  }
+
+  startTime = currentTime;
+  
   if(debugMask & DEBUG_MOTOR){
     sendMotorInfo();
   }

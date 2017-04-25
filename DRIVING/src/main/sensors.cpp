@@ -2,11 +2,7 @@
 #include<NewPing.h>
 #include"sensors.h"
 #include"expoavrg.h"
-
-#define ULTRA_E_TRIGGER 22 //Ultrasone afstandssensor emmer zijde
-#define ULTRA_E_ECHO 24
-#define ULTRA_P_TRIGGER 26 //Ultrasone afstandssensor pomp zijde
-#define ULTRA_P_ECHO 28
+#include"pin.h"
 
 #define MAXDISTANCE 900
 #define NUM_PINS 6
@@ -28,10 +24,10 @@ void initSensorPins(){
     pinMode(i, INPUT);
   }
 
-  pinMode(ULTRA_E_TRIGGER, OUTPUT);
-  pinMode(ULTRA_E_ECHO, INPUT);
-  pinMode(ULTRA_P_TRIGGER, OUTPUT);
-  pinMode(ULTRA_P_ECHO, INPUT);
+  pinMode(EMMER_ULTRA_TRIGGER_PIN, OUTPUT);
+  pinMode(EMMER_ULTRA_ECHO_PIN, INPUT);
+  pinMode(POMP_ULTRA_TRIGGER_PIN, OUTPUT);
+  pinMode(POMP_ULTRA_ECHO_PIN, INPUT);
 }
 
 int getSensorMask(){
@@ -43,12 +39,13 @@ int getSensorMask(){
     }
   }
 
-  return mask;
+  //return mask;
+  return 0;
 }
 
 void measureDistances(){
-  static NewPing ultraPSensor(ULTRA_P_TRIGGER, ULTRA_P_ECHO, MAXDISTANCE);
-  static NewPing ultraESensor(ULTRA_E_TRIGGER, ULTRA_E_ECHO, MAXDISTANCE);
+  static NewPing ultraPSensor(POMP_ULTRA_TRIGGER_PIN, POMP_ULTRA_ECHO_PIN, MAXDISTANCE);
+  static NewPing ultraESensor(EMMER_ULTRA_TRIGGER_PIN, EMMER_ULTRA_ECHO_PIN, MAXDISTANCE);
 
   unsigned int pompDistance = ultraPSensor.ping();
   unsigned int emmerDistance = ultraESensor.ping();

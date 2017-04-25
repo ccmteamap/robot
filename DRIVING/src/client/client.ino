@@ -95,7 +95,7 @@ bool isValidMotorInstruction(char *instruction){
       int value = atoi(instruction + 1);
       
       if(*instruction == 'S'){
-	      return value < 255 && value > -255;
+	      return value <= 255 && value >= -255;
       }
       
       else if(*instruction == 'P'){
@@ -134,6 +134,8 @@ void checkRF(){
       printSensorsInfo(message.body.sensorsInfo);
       break;
     }
+
+    Serial.println("-");
   }
 }
 

@@ -3,7 +3,6 @@
    AP Hogeschool
    2017
 */
-
 #include"main.h" //interface om robot aan/uit/pauze te zetten
 #include"sensors.h" //nodig om de sensormask te krijgen
 #include"comm.h" //kijken of er instructie zijn ontvangen.
@@ -17,6 +16,7 @@ State currentState = Off;
 int sensorMask = 0;
 
 void setup() {
+  Serial.begin(9600);
   initSensorPins();
   startComm();
 }
@@ -32,6 +32,8 @@ void listenHome() {
   uint8_t buffer[PAYLOAD_SIZE];
 
   if(read(buffer, PAYLOAD_SIZE)){
+    Serial.print("Received: ");
+    Serial.println((char*)buffer);
     parse(buffer);
   }
 }

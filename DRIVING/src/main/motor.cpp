@@ -1,9 +1,10 @@
 #include"motor.h"
 #include<Arduino.h>
+#include"pin.h"
 
-Motor mainMotor(6, 7);
-Motor emmerMotor(9, 10);
-Motor pompMotor(12, 13);
+Motor mainMotor(MAIN_MOTOR_FORWARDS_PIN, MAIN_MOTOR_BACKWARDS_PIN);
+Motor emmerMotor(EMMER_MOTOR_BACKWARDS_PIN, EMMER_MOTOR_BACKWARDS_PIN);
+Motor pompMotor(POMP_MOTOR_FORWARDS_PIN, POMP_MOTOR_BACKWARDS_PIN);
 
 Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
   pinMode(fPin, OUTPUT);
@@ -13,6 +14,10 @@ Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
 
 //tussen -255 (achteruit, richting vuur) en 255 (vooruit richting bassin)
 void Motor::SetSpeed(int newSpeed){
+  if(newSpeed == this->GetSpeed()){
+    return;
+  }
+  
   speed = newSpeed;
   outputToMotor();
 }
@@ -22,7 +27,11 @@ int Motor::GetSpeed() {
 }
 
 void Motor::SetPower(unsigned int newPower) {
-	power = newPower % 101;
+  if(newPower == this->GetPower()){
+    return;
+  }
+  
+  power = newPower % 101;
   outputToMotor();
 }
 

@@ -2,11 +2,9 @@
 #include <RF24_config.h>
 #include <RF24.h>
 #include <nRF24L01.h>
+#include"pin.h"
 
-#define CE 9
-#define CSN 10
-
-RF24 rf(CE, CSN);
+RF24 rf(CE_PIN, CSN_PIN);
 
 //GETEST
 void startComm(){

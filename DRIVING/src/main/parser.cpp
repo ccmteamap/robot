@@ -3,6 +3,7 @@
 #include"motor.h"
 #include"stdlib.h"
 #include"debug.h"
+#include"Arduino.h"
 
 void parseMotorCommand(uint8_t*);
 void selectMotor(uint8_t*, Motor**);
