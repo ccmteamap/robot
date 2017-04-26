@@ -24,6 +24,6 @@ void stopDriving(){
 
 //GETEST
 double acceleration(double x){
-  return (127.5 * sin(-0.00071973 * x + 4.7124) + 127.5);
+  return (127.5 * sin(-0.041888 * x + 4.7124) + 127.5);
 }
 

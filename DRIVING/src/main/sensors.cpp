@@ -50,6 +50,6 @@ void measureDistances(){
   unsigned int pompDistance = ultraPSensor.ping();
   unsigned int emmerDistance = ultraESensor.ping();
 
-  ultraPAvrg.Update((double) pompDistance);
-  ultraEAvrg.Update((double) emmerDistance);
+  ultraPAvrg.Update(((double) pompDistance) / 58.2);
+  ultraEAvrg.Update(((double) emmerDistance) / 58.2);
 }

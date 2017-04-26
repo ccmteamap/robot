@@ -9,6 +9,8 @@ void sendMotorInfo();
 void sendDistanceInfo();
 void sendStateInfo();
 void sendSensorsInfo();
+void sendStartMessage();
+void sendStopMessage();
 
 void setDebugMask(int mask){
   debugMask = mask;
@@ -17,7 +19,7 @@ void setDebugMask(int mask){
 //GETEST
 void debug(){
   static long startTime = millis();
-  static int pause = 0;
+  static int pause = 500;
   static long currentTime = 0;
 
   currentTime = millis();
@@ -27,6 +29,10 @@ void debug(){
   }
 
   startTime = currentTime;
+
+  if(debugMask){
+    sendStartMessage();
+  }
   
   if(debugMask & DEBUG_MOTOR){
     sendMotorInfo();
@@ -43,11 +49,31 @@ void debug(){
   if(debugMask & DEBUG_SENSORS){
     sendSensorsInfo();
   }
+
+  if(debugMask){
+    sendStopMessage();
+  }
 }
 
 //GETEST
 void sendDebugMessage(Debug_Message message){
   send(&message, sizeof message);
+}
+
+void sendStartMessage(){
+  Debug_Message startMessage = {
+    DEBUG_START
+  };
+
+  sendDebugMessage(startMessage);
+}
+
+void sendStopMessage(){
+  Debug_Message stopMessage = {
+    DEBUG_END
+  };
+
+  sendDebugMessage(stopMessage);
 }
 
 //GETEST

@@ -9,6 +9,8 @@
 #define DEBUG_DISTANCE 0x02
 #define DEBUG_STATE 0x04
 #define DEBUG_SENSORS 0x08
+#define DEBUG_START 0x10
+#define DEBUG_END 0x20
 
 void setDebugMask(int);
 void debug();

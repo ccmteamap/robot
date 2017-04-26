@@ -1,16 +1,16 @@
 #ifndef PINS_H
 #define PINS_H
 
-#define SCK_PIN 13
-#define MOSI_PIN 11
-#define MISO_PIN 12
-#define CE_PIN 9
-#define CSN_PIN 10
+#define SCK_PIN 52
+#define MOSI_PIN 51
+#define MISO_PIN 50
+#define CE_PIN 4
+#define CSN_PIN 3
 
-#define POMP_ULTRA_ECHO_PIN 4
-#define POMP_ULTRA_TRIGGER_PIN 5
-#define EMMER_ULTRA_ECHO_PIN 6
-#define EMMER_ULTRA_TRIGGER_PIN 7
+#define POMP_ULTRA_ECHO_PIN 28
+#define POMP_ULTRA_TRIGGER_PIN 26
+#define EMMER_ULTRA_ECHO_PIN 24
+#define EMMER_ULTRA_TRIGGER_PIN 22
 
 #define POMP_MOTOR_BACKWARDS_PIN 13
 #define POMP_MOTOR_FORWARDS_PIN 12

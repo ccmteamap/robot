@@ -2,10 +2,10 @@ Arduino mega
 
 | pin  |                      |
 
-| D52  | Ultra pomp echo      |
-| D50  | Ultra pomp trigger   |
-| D48  | Ultra emmer echo     |
-| D46  | Ultra emmer trigger  |
+| D28  | Ultra pomp echo      |
+| D26  | Ultra pomp trigger   |
+| D24  | Ultra emmer echo     |
+| D22  | Ultra emmer trigger  |
 
 | D13~ | Backward pomp motor  |
 | D12~ | Forward pomp motor   |
@@ -14,8 +14,8 @@ Arduino mega
 | D7~  | Backward main motor  |
 | D6~  | Forward main motor   |
 
-| ?    | SCK                  |
-| ?    | MOSI                 |
-| ?    | MISO                 |
-| ?    | CE (wireless)        |
-| ?    | CSN (wireless)       |
+| 52    | SCK                  |
+| 51   | MOSI                 |
+| 50    | MISO                 |
+| 4    | CE (wireless)        |
+| 3    | CSN (wireless)       |
