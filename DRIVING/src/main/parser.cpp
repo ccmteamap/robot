@@ -73,9 +73,11 @@ void parseMotorCommand(uint8_t *buffer){
   switch(*(buffer + 2)){
   case 'S':
     motor->SetSpeed(value);
+    break;
 
   case 'P':
     motor->SetPower((unsigned int)value);
+    break;
   }
 }
 

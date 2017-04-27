@@ -11,6 +11,9 @@ Motor::Motor(int fPin, int bPin) : forwardPin(fPin), backwardPin(bPin) {
   pinMode(bPin, OUTPUT);
   speed = 0;
   power = 100;
+
+  //Serial.println(&speed);
+  //Serial.println(&power);
 }
 
 //tussen -255 (achteruit, richting vuur) en 255 (vooruit richting bassin)
@@ -24,11 +27,6 @@ void Motor::SetSpeed(int newSpeed){
 }
 
 int Motor::GetSpeed() {
-  Serial.print("Speed forward: ");
-  Serial.println(analogRead(forwardPin));
-
-  Serial.print("Speed backwards: ");
-  Serial.println(analogRead(backwardPin));
   return speed;
 }
 
@@ -53,10 +51,12 @@ void Motor::outputToMotor(){
   int outSpeed = mapSpeed();
   
   if(outSpeed < 0) {
-    analogWrite(backwardPin, outSpeed);
+    Serial.println(outSpeed);
+    analogWrite(backwardPin, outSpeed * -1);
     analogWrite(forwardPin, 0);
   }
   else {
+    Serial.println(outSpeed);
     analogWrite(backwardPin, 0);
     analogWrite(forwardPin, outSpeed);
   }
