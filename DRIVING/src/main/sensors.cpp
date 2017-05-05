@@ -11,17 +11,17 @@ ExpoAvrg ultraPAvrg(0, AVRGSIZE);
 ExpoAvrg ultraEAvrg(0, AVRGSIZE);
 
 int sensorPins[NUM_PINS] = {  
-  0, //eindeloop emmer zijde
-  0, //eindeloop pomp zije
-  0, //pomp sensor die checkt of emmer vol is
-  0, //pomp sensor die checkt of pomp laag hangt
-  0, //emmer sensor bovenaan
-  0, //emmer sensor onderaan
+  EMMER_ZIJDE_PIN, //eindeloop emmer zijde
+  POMP_ZIJDE_PIN, //eindeloop pomp zije
+  POMP_ONDER_PIN, //pomp sensor die checkt of emmer vol is
+  POMP_BOVEN_PIN, //pomp sensor die checkt of pomp laag hangt
+  EMMER_BOVEN_PIN, //emmer sensor bovenaan
+  EMMER_ONDER_PIN, //emmer sensor onderaan
 };
 
 void initSensorPins(){
   for(int i = 0; i < NUM_PINS; ++i){
-    pinMode(i, INPUT);
+    pinMode(sensorPins[i], INPUT);
   }
 
   pinMode(EMMER_ULTRA_TRIGGER_PIN, OUTPUT);

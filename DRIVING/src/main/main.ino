@@ -58,6 +58,7 @@ void updateState() { //GETEST
       if(running){
         currentState = DrivingForward;
       }
+      break;
 
     //Als 'aan' en eindeloopschakelaar pompzijde ingedrukt
     case DrivingForward:
