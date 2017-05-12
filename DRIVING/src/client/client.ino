@@ -35,6 +35,9 @@ void handleInput() {
         if (!send(buffer, sizeof buffer)) {
           Serial.println("COMMUNICATION ERROR: could not send instruction.");
         }
+        else {
+          Serial.println("Instruction send.");
+        }
       }
 
       else {

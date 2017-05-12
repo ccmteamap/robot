@@ -23,7 +23,7 @@ void setup() {
 
 void loop() {
   inputScan(); //update status of sensors.
-  executeProgram(); //update state and perform action
+  //executeProgram(); //update state and perform action
   callHome(); //send debugging information.
   listenHome(); //see if we got instructions.
 }
@@ -44,7 +44,7 @@ void callHome() {
 
 void inputScan() {
   sensorMask = getSensorMask();
-  measureDistances();
+  //measureDistances();
 }
 
 void executeProgram() {

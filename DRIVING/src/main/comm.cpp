@@ -17,10 +17,12 @@ void startComm(){
 }
 
 //GETEST
-void send(const void *msg, uint8_t size){
+bool send(const void *msg, uint8_t size){
   rf.stopListening();
-  rf.write(msg, size);
+  bool success = rf.write(msg, size);
   rf.startListening();
+
+  return success;
 }
 
 //GETEST

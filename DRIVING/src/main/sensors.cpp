@@ -24,6 +24,16 @@ void initSensorPins(){
     pinMode(sensorPins[i], INPUT);
   }
 
+
+/*
+  pinMode(EMMER_ZIJDE_PIN, INPUT);
+  pinMode(POMP_ZIJDE_PIN, INPUT);
+  pinMode(POMP_ONDER_PIN, INPUT);
+  pinMode(POMP_BOVEN_PIN, INPUT);
+  pinMode(EMMER_BOVEN_PIN, INPUT);
+  pinMode(EMMER_ONDER_PIN, INPUT);
+ */
+
   pinMode(EMMER_ULTRA_TRIGGER_PIN, OUTPUT);
   pinMode(EMMER_ULTRA_ECHO_PIN, INPUT);
   pinMode(POMP_ULTRA_TRIGGER_PIN, OUTPUT);
@@ -35,12 +45,12 @@ int getSensorMask(){
 
   for(int i = 0; i < NUM_PINS; ++i){
     if(digitalRead(sensorPins[i])){
+      Serial.println(0x01 << i);
       mask |= 0x01 << i;
     }
   }
 
-  //return mask;
-  return 0;
+  return mask;
 }
 
 void measureDistances(){
