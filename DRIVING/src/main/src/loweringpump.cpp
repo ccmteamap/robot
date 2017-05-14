@@ -8,7 +8,7 @@ void lowerPump(){
   unsigned long currentTime = millis();
   static unsigned long startTime;
 
-  if(stopped()){
+  if(stopped){
     startTime = currentTime();
     stopped = false;
   }
