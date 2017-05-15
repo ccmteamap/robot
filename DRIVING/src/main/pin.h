@@ -4,8 +4,8 @@
 #define SCK_PIN 52
 #define MOSI_PIN 51
 #define MISO_PIN 50
-#define CE_PIN 4
-#define CSN_PIN 3
+#define CE_PIN 49
+#define CSN_PIN 48
 
 #define POMP_ULTRA_ECHO_PIN 28
 #define POMP_ULTRA_TRIGGER_PIN 26
@@ -19,9 +19,9 @@
 #define MAIN_MOTOR_BACKWARDS_PIN 7
 #define MAIN_MOTOR_FORWARDS_PIN 6
 
-#define EMMER_ONDER_PIN 44
+#define EMMER_ONDER_PIN 38
 #define EMMER_BOVEN_PIN 39
-#define POMP_ONDER_PIN 45
+#define POMP_ONDER_PIN 40
 #define POMP_BOVEN_PIN 41
 #define EMMER_ZIJDE_PIN 42
 #define POMP_ZIJDE_PIN 43

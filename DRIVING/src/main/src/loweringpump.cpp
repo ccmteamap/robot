@@ -1,15 +1,15 @@
 #include"../motor.h"
 #include"Arduino.h"
 
-static unsigned long duration = 1000;
-static bool stopped = true;
+bool stopped = true;
 
 void lowerPump(){
   unsigned long currentTime = millis();
   static unsigned long startTime;
+  static unsigned long duration = 1000;
 
   if(stopped){
-    startTime = currentTime();
+    startTime = currentTime;
     stopped = false;
   }
 
