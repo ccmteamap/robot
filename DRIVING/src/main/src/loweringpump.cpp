@@ -6,7 +6,7 @@ bool stopped = true;
 void lowerPump(){
   unsigned long currentTime = millis();
   static unsigned long startTime;
-  static unsigned long duration = 1000;
+  static unsigned long duration = 1500;
 
   if(stopped){
     startTime = currentTime;
@@ -17,7 +17,7 @@ void lowerPump(){
     pompMotor.SetSpeed(0);
   }
   else {
-    pompMotor.SetSpeed(255);
+    pompMotor.SetSpeed(-255);
   }
 }
 

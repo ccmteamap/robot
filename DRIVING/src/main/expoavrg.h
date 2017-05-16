@@ -1,7 +1,7 @@
 #ifndef EXPO_AVRG_H
 #define EXPO_AVRG_H
 
-#define AVRGSIZE 33
+#define AVRGSIZE 8
 
 struct ExpoAvrg {
   double value;

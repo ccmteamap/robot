@@ -5,7 +5,7 @@
 double acceleration(double);
 
 void drive(bool forward){
-  double x = ultraPAvrg.value <= ultraEAvrg.value ? ultraPAvrg.value : ultraEAvrg.value;
+  /*double x = ultraPAvrg.value <= ultraEAvrg.value ? ultraPAvrg.value : ultraEAvrg.value;
   double y = acceleration(x);
 
   int speed = (int)(y + 0.5);
@@ -15,7 +15,34 @@ void drive(bool forward){
     speed *= -1;
   }
 
-  mainMotor.SetSpeed(speed);
+  mainMotor.SetSpeed(speed);*/
+
+  /*
+  if(forward){
+    mainMotor.SetSpeed(255);
+  }
+  else {
+    mainMotor.SetSpeed(-255);
+  }
+  */
+
+  
+  static double tresholdDistance = 20; //afstand waarbinnen hij afremt en optrekt.
+  double distancePump = ultraPAvrg.value;
+  double distanceBucket = ultraEAvrg.value;
+
+  if(forward && distancePump <= tresholdDistance){
+    mainMotor.SetSpeed(150);
+  }
+  else if(!forward && distanceBucket <= tresholdDistance) {
+    mainMotor.SetSpeed(-150);
+  }
+  else if (forward){
+    mainMotor.SetSpeed(255);
+  }
+  else {
+    mainMotor.SetSpeed(-255);
+  }
 }
 
 void stopDriving(){

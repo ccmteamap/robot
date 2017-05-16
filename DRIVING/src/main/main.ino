@@ -87,7 +87,7 @@ void updateState() { //GETEST
     //Als 'aan' en eindeloopschakelaar emmer zijde ingedrukt (robot tegen vuur zijde)
     case DrivingBackwards:
       if (sensorMask & ELOOPEMMER && running) {
-	stopDriving();
+	      stopDriving();
         currentState = RaisingBucket;
       }
       break;
@@ -95,20 +95,19 @@ void updateState() { //GETEST
     //Als 'aan' en emmer sensor bovenaan ingedrukt (emmer is dus opgehoffen)
     case RaisingBucket:
       if (sensorMask & EMMER1 && running) {
-	stopRaiseBucket();
+	      stopRaiseBucket();
         currentState = LoweringBucket;
+        delay(1000);
       }
       break;
 
-    //Als 'aan' en emmer sensor onderaan ingedrukt (emmer terug gedaald)
     case LoweringBucket:
       if (sensorMask & EMMER2 && running) {
-	stopLowerBucket();
+	      stopLowerBucket();
         currentState = DrivingForward;
       }
       break;
 
-    //something went wrong.
     default:
       //send state
       break;
