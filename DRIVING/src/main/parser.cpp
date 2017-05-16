@@ -68,7 +68,8 @@ void parseMotorCommand(uint8_t *buffer){
   int value;
 
   selectMotor(buffer, &motor);
-  value = atoi((const char*)buffer + 3);
+  //value = atoi((const char*)buffer + 3);
+  value = atoi(buffer + 3);
 
   switch(*(buffer + 2)){
   case 'S':
