@@ -45,7 +45,6 @@ int getSensorMask(){
 
   for(int i = 0; i < NUM_PINS; ++i){
     if(digitalRead(sensorPins[i])){
-      Serial.println(0x01 << i);
       mask |= 0x01 << i;
     }
   }

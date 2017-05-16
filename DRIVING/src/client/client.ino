@@ -121,6 +121,10 @@ void checkRF() {
   Debug_Message message;
   if (read(&message, sizeof message)) {
     switch (message.type) {
+      case DEBUG_START:
+        Serial.print("");
+        break;
+      
       case DEBUG_STOP:
         Serial.println("");
         break;
